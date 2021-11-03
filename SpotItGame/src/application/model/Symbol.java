@@ -1,4 +1,4 @@
-package application;
+package application.model;
 import java.io.File;
 
 public class Symbol {
