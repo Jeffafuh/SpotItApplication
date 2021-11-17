@@ -15,6 +15,11 @@ public class Card {
 		symbols.add(s);
 	}
 	
+	public ArrayList<Symbol> getSymbolList()
+	{
+		return symbols;
+	}
+	
 	public String toString()
 	{
 		String output = "[ ";

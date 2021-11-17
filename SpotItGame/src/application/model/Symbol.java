@@ -32,7 +32,7 @@ public class Symbol {
 	 */
 	public static Symbol getRandSymbol()
 	{
-		File imageFile = new File("images");
+		File imageFile = new File("symbolImages");
 		File[] fileList = imageFile.listFiles();
 		
 		int randInt = (int)(Math.random()*fileList.length);

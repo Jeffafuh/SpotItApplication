@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
+   <children>
+      <ImageView fitHeight="897.0" fitWidth="1426.0" layoutX="-95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../backgroundImages/Game_Background_110.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="276.0" layoutY="128.0" prefHeight="170.0" prefWidth="637.0" text="SPOT IT!" textFill="#faf6f6">
+         <font>
+            <Font name="Comic Sans MS Bold" size="96.0" />
+         </font>
+      </Label>
+      <Button layoutX="552.0" layoutY="467.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="132.0" text="START" textFill="#11b7a6">
+         <font>
+            <Font name="Ayuthaya" size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="name" alignment="CENTER" layoutX="463.0" layoutY="366.0" prefHeight="35.0" prefWidth="310.0" promptText="Enter Name" />
+      <Label fx:id="invalid" alignment="CENTER" contentDisplay="CENTER" layoutX="472.0" layoutY="423.0" prefHeight="18.0" prefWidth="283.0" textFill="#e20707">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
