@@ -1,15 +1,21 @@
 package application.model;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Deck {
 
-	private ArrayList<Card> cards;
+	public ArrayList<Card> cards;
 	private ArrayList<Symbol> symbols;
 	
 	public Deck()
 	{
 		cards = new ArrayList<Card>();
 		symbols = new ArrayList<Symbol>();
+	}
+	
+	public void shuffleDeck()
+	{
+		Collections.shuffle(cards);
 	}
 	
 	public void emptyDeck()
@@ -21,7 +27,7 @@ public class Deck {
 	{
 		if(!isDeckEmpty())
 			return cards.remove(0);
-		else return new Card();
+		else return null;
 	}
 	
 	public void push(Card c)
@@ -32,6 +38,33 @@ public class Deck {
 	public boolean isDeckEmpty()
 	{
 		return cards.isEmpty();
+	}
+	
+	public int getDeckSize()
+	{
+		return cards.size();
+	}
+	
+	public void adjustDeck(int diff)
+	{
+		if(diff < 0)
+		{
+			while(diff < 0)
+			{
+				pop();
+				diff++;
+			}
+		}
+		else if (diff > 0)
+		{
+			int cnt = 0;
+			while(diff > 0)
+			{
+				cards.add(cards.get(cnt));
+				diff--;
+				cnt = (cnt+1)%symbols.size();
+			}
+		}
 	}
 	
 	/**
@@ -93,43 +126,36 @@ public class Deck {
 	 * 
 	 * @param order Order of the FPP to be constructed
 	 */
-	public void reconstructDeck(int order)
+	public void reconstructDeck(int N)
 	{
 		emptyDeck();
 		
-		//first card
-		Card toAdd = new Card();
-		for(int i = 0; i < order+1; i++)
-		{
-			toAdd.addSymbol(symbols.get(i));
-		}
-		cards.add(toAdd);
+		Card toAdd;
 		
-		//next n cards
-		for(int i = 1; i <= order; i++)
+		for(int i = 0; i < N+1; i++) 
 		{
 			toAdd = new Card();
 			toAdd.addSymbol(symbols.get(0));
 			
-			for(int j = 0; j < order; j++)
+			for(int j = 0; j < N; j++) 
 			{
-				toAdd.addSymbol(symbols.get(order*i+j+1));
+				toAdd.addSymbol(symbols.get((j+1)+(i*N)));
 			}
+			
 			cards.add(toAdd);
 		}
-		
-		//add the remaining n^2 cards
-		for(int i = 1; i <= order; i++)
+
+		for(int i = 0; i < N; i++) 
 		{
-			for(int j = 1; j <= order; j++)
+			for (int j = 0; j < N; j++) 
 			{
 				toAdd = new Card();
-				toAdd.addSymbol(symbols.get(i));
-				
-				for(int k = 1; k <= order; k++)
+				toAdd.addSymbol(symbols.get(i+1));
+
+				for (int k = 0; k < N; k++) 
 				{
-					int index = order+2+order*(k-1)+(((i-1)*(k-1)+j-1)%order);
-					toAdd.addSymbol(symbols.get(index-1));
+					int val = N+1 + N*k + FPPHelper.add(FPPHelper.mul(i, k, N), j, N);
+					toAdd.addSymbol(symbols.get(val));
 				}
 				cards.add(toAdd);
 			}
