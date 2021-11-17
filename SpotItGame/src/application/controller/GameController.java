@@ -55,7 +55,7 @@ public class GameController {
     private int minSize;
 
     public void initialize()
-    {
+    {	
     	ArrayList<String> data = dataIO.readGameData();
     	d = new Deck();
     	int order = Integer.parseInt(data.get(0));
@@ -66,7 +66,10 @@ public class GameController {
     	displayCard(d.pop(),leftPane);
     	displayCard(d.pop(),rightPane);
     	cardCounter.setText("Cards remaining in deck: "+d.getDeckSize());
-    	//testButton.setOnAction(actionEvent -> check(actionEvent));
+
+    	Thread t = new Thread(new GameTimer(timer,d));
+    	t.setDaemon(true);
+    	t.start();
     }
     
     public void check(MouseEvent e)

@@ -33,9 +33,6 @@ public class LoginController {
     		invalid.setText("Please enter your name");
     	}
     	else {
-    		System.out.println("Game Started");
-    		
-    		
     		URL url = new File("src/application/view/Menu.fxml").toURI().toURL();
         	mainPane = FXMLLoader.load(url);
             Scene scene = new Scene(mainPane);// pane you are GOING TO show
