@@ -4,7 +4,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 
-public class GameTimer extends Task{
+public class GameTimer implements Runnable{
 	
     private Label timer;
     private Deck d;
@@ -18,7 +18,7 @@ public class GameTimer extends Task{
     }
 
 	@Override
-	protected Object call() throws Exception {
+	public void run() {
 		try {
 			while(!d.isDeckEmpty())
 			{
@@ -36,7 +36,6 @@ public class GameTimer extends Task{
 		{
 			e.printStackTrace();
 		}
-		return null;
 	}
 
 }
