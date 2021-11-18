@@ -34,7 +34,6 @@ public class GameTimer implements Runnable{
 		try {
 			while(!d.isDeckEmpty())
 			{
-				System.out.println(milisec);
 				Platform.runLater(new Runnable() {
 					public void run()
 					{
