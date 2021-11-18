@@ -23,6 +23,13 @@ public class Deck {
 		cards.clear();
 	}
 	
+	public Card peek()
+	{
+		if(!isDeckEmpty())
+			return cards.get(0);
+		else return null;
+	}
+	
 	public Card pop()
 	{
 		if(!isDeckEmpty())

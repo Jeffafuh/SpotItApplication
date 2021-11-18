@@ -64,8 +64,8 @@ public class GameController {
     	d.shuffleDeck();
     	d.adjustDeck(Integer.parseInt(data.get(1))-(order*order+order+1));
     	displayCard(d.pop(),leftPane);
-    	displayCard(d.pop(),rightPane);
-    	cardCounter.setText("Cards remaining in deck: "+d.getDeckSize());
+    	displayCard(d.peek(),rightPane);
+    	cardCounter.setText("# of matches remaining: "+d.getDeckSize());
 
     	Thread t = new Thread(new GameTimer(timer,d));
     	t.setDaemon(true);
@@ -89,17 +89,17 @@ public class GameController {
     	
     	if(match)
     	{
-    		//displayCard(d.pop(),(Pane)n.getParent());
-    		Card toDisplay = d.pop();
-    		if(toDisplay != null)
+    		d.pop();
+    		Card toDisplay = d.peek();
+    		if(!d.isDeckEmpty())
     		{
     			if(Math.random() < 0.5)
 	    			displayCard(toDisplay, leftPane);
 	    		else
 	    			displayCard(toDisplay, rightPane);
-    			cardCounter.setText("Cards remaining in deck: "+d.getDeckSize());
     		}
     		else gameEnd();
+    		cardCounter.setText("# of matches remaining: "+d.getDeckSize());
     	}
     }
     
@@ -211,6 +211,8 @@ public class GameController {
     
     @FXML
     void switchToGameStart(ActionEvent event) throws IOException{
+    	d.emptyDeck();
+    	
     	URL url = new File("src/application/view/GameStart.fxml").toURI().toURL();
     	mainPane = FXMLLoader.load(url);
         Scene scene = new Scene(mainPane);// pane you are GOING TO show
