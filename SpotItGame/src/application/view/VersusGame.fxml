@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GameController">
+<AnchorPane fx:id="mainPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.VersusGameController">
    <children>
-      <Pane fx:id="leftPane" layoutX="56.0" layoutY="250.0" prefHeight="520.0" prefWidth="520.0" />
-      <Pane fx:id="rightPane" layoutX="624.0" layoutY="250.0" prefHeight="520.0" prefWidth="520.0" />
-      <Label fx:id="timer" layoutX="490.0" layoutY="14.0" prefHeight="76.0" prefWidth="220.0" text="&lt;timer&gt;" />
+      <Pane fx:id="playerPane" layoutX="43.0" layoutY="250.0" prefHeight="520.0" prefWidth="520.0" />
+      <Pane fx:id="deckPane" layoutX="624.0" layoutY="250.0" prefHeight="520.0" prefWidth="520.0" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToGameStart" text="Back" />
-      <Label fx:id="cardCounter" layoutX="416.0" layoutY="102.0" prefHeight="21.0" prefWidth="228.0" text="Cards remaining : " />
+      <Label fx:id="cardCounter" layoutX="335.0" layoutY="204.0" prefHeight="21.0" prefWidth="228.0" text="Cards remaining : " />
       <Button fx:id="submitButton" layoutX="1031.0" layoutY="183.0" mnemonicParsing="false" onAction="#submitScore" opacity="0.0" text="Submit Score!" />
       <Button fx:id="replayButton" layoutX="40.0" layoutY="183.0" mnemonicParsing="false" onAction="#resetGame" opacity="0.0" text="Replay (Same Settings)" />
+      <Pane fx:id="AIPane1" layoutX="440.0" layoutY="14.0" prefHeight="320.0" prefWidth="320.0" />
    </children>
 </AnchorPane>

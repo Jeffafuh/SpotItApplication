@@ -39,7 +39,7 @@ public class Deck {
 	
 	public void push(Card c)
 	{
-		cards.add(c);
+		cards.add(0,c);
 	}
 	
 	public boolean isDeckEmpty()

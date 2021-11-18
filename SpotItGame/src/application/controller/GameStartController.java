@@ -13,11 +13,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class GameStartController {
+	
+	@FXML
+    private Slider modeSelect;
 	
 	@FXML
     private Label errorText;
@@ -73,7 +77,9 @@ public class GameStartController {
     		}
     		
     		dataIO.writeGameData(N, cardNum);
-    		switchToGame(event);
+    		if(modeSelect.getValue() == 0)
+    			switchToGame(event);
+    		else switchToVersusGame(event);
     	}
     	catch(NumberFormatException e)
     	{
@@ -88,6 +94,18 @@ public class GameStartController {
     void switchToGame(ActionEvent event) throws IOException
     {
     	URL url = new File("src/application/view/Game.fxml").toURI().toURL();
+    	mainPane = FXMLLoader.load(url);
+        Scene scene = new Scene(mainPane);// pane you are GOING TO show
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
+        scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+    	
+        window.setScene(scene);
+        window.show();
+    }
+    
+    void switchToVersusGame(ActionEvent event) throws IOException
+    {
+    	URL url = new File("src/application/view/VersusGame.fxml").toURI().toURL();
     	mainPane = FXMLLoader.load(url);
         Scene scene = new Scene(mainPane);// pane you are GOING TO show
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
