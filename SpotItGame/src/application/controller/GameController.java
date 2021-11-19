@@ -40,6 +40,9 @@ public class GameController {
 	
 	@FXML
     private Label timer;
+	
+	@FXML
+    private Label timerPenalty;
 
 	@FXML
     private Pane rightPane;
@@ -51,7 +54,7 @@ public class GameController {
     private AnchorPane mainPane;
     
     private Deck d;
-    
+    private GameTimer t;
     private int minSize;
 
     public void initialize()
@@ -67,9 +70,10 @@ public class GameController {
     	displayCard(d.peek(),rightPane);
     	cardCounter.setText("# of matches remaining: "+d.getDeckSize());
 
-    	Thread t = new Thread(new GameTimer(timer,d));
-    	t.setDaemon(true);
-    	t.start();
+    	t = new GameTimer(timerPenalty, timer, d);
+    	Thread thread = new Thread(t);
+    	thread.setDaemon(true);
+    	thread.start();
     }
     
     public void check(MouseEvent e)
@@ -100,6 +104,13 @@ public class GameController {
     		}
     		else gameEnd();
     		cardCounter.setText("# of matches remaining: "+d.getDeckSize());
+    	}
+    	else
+    	{
+    		t.addTime(5);
+    		timerPenalty.setOpacity(1);
+    		timerPenalty.setLayoutX(e.getSceneX()+25);
+    		timerPenalty.setLayoutY(e.getSceneY()+25);
     	}
     }
     

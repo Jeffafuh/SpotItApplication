@@ -9,15 +9,21 @@ import javafx.scene.control.Label;
 
 public class GameTimer implements Runnable{
 	
-    private Label timer;
+    private Label timer, penalty;
     private Deck d;
     private long milisec;
     
-    public GameTimer(Label t, Deck d)
+    public GameTimer(Label penalty, Label t, Deck d)
     {
     	milisec = 0;
     	timer = t;
     	this.d = d;
+    	this.penalty = penalty;
+    }
+    
+    public void addTime(int seconds)
+    {
+    	milisec += seconds*1000;
     }
     
     public String getFormattedTime()
@@ -38,6 +44,15 @@ public class GameTimer implements Runnable{
 					public void run()
 					{
 						timer.setText(getFormattedTime());
+						if(penalty.getOpacity() > 0)
+						{
+							penalty.setOpacity(penalty.getOpacity()-0.002);
+						}
+						else
+						{
+							penalty.setLayoutX(100);
+							penalty.setLayoutY(0);
+						}
 					}
 				});
 				milisec++;

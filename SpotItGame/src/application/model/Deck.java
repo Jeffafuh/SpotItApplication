@@ -27,14 +27,14 @@ public class Deck {
 	{
 		if(!isDeckEmpty())
 			return cards.get(0);
-		else return null;
+		else return new Card();
 	}
 	
 	public Card pop()
 	{
 		if(!isDeckEmpty())
 			return cards.remove(0);
-		else return null;
+		else return new Card();
 	}
 	
 	public void push(Card c)

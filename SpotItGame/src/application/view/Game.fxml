@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
@@ -11,10 +12,14 @@
    <children>
       <Pane fx:id="leftPane" layoutX="56.0" layoutY="250.0" prefHeight="520.0" prefWidth="520.0" />
       <Pane fx:id="rightPane" layoutX="624.0" layoutY="250.0" prefHeight="520.0" prefWidth="520.0" />
-      <Label fx:id="timer" layoutX="490.0" layoutY="14.0" prefHeight="76.0" prefWidth="220.0" text="&lt;timer&gt;" />
+      <Label fx:id="timer" alignment="CENTER" layoutX="490.0" layoutY="14.0" prefHeight="31.0" prefWidth="220.0" text="&lt;timer&gt;" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToGameStart" text="Back" />
       <Label fx:id="cardCounter" layoutX="416.0" layoutY="102.0" prefHeight="21.0" prefWidth="228.0" text="Cards remaining : " />
       <Button fx:id="submitButton" layoutX="1031.0" layoutY="183.0" mnemonicParsing="false" onAction="#submitScore" opacity="0.0" text="Submit Score!" />
       <Button fx:id="replayButton" layoutX="40.0" layoutY="183.0" mnemonicParsing="false" onAction="#resetGame" opacity="0.0" text="Replay (Same Settings)" />
+      <Label fx:id="timerPenalty" alignment="CENTER" layoutX="559.0" layoutY="55.0" opacity="0.0" prefHeight="21.0" prefWidth="85.0" text="+5 seconds" textFill="RED">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
    </children>
 </AnchorPane>
