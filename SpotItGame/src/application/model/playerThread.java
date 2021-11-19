@@ -127,6 +127,13 @@ public class playerThread extends Task<Integer>{
 			
 	    	n.setEffect(new DropShadow(BlurType.GAUSSIAN, Color.color(1, 0, 0), 20, 0.5, 0.0, 0.0));
 	    	Thread.sleep(500);
+	    	
+	    	if(d.isDeckEmpty())
+	    	{
+	    		n.setEffect(null);
+	    		break;
+	    	}
+	    	
 			if(checkMatch(img.getPath(), deckPane))
 			{
 				playerDeck.push(d.pop());
@@ -142,7 +149,7 @@ public class playerThread extends Task<Integer>{
 			}
 			else
 			{
-				n.setEffect(null);;
+				n.setEffect(null);
 			}
 		}
 		
