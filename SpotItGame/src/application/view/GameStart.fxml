@@ -22,5 +22,6 @@
       </Label>
       <Label layoutX="637.0" layoutY="361.0" text="Burndown&#10;(Single-player)&#10;" textAlignment="CENTER" />
       <Label layoutX="796.0" layoutY="361.0" text="Classic&#10;(Versus A.I.)&#10;" textAlignment="CENTER" />
+      <Button layoutX="34.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToMenu" text="Back" />
    </children>
 </AnchorPane>
