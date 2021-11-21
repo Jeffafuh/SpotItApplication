@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import application.model.Card;
 import application.model.Deck;
-import application.model.GameTimer;
 import application.model.Symbol;
 import application.model.dataIO;
 import application.model.loadedImage;
@@ -47,6 +46,12 @@ public class VersusGameController {
     
     @FXML
     private Pane AIPane1;
+    
+    @FXML
+    private Pane AIPane3;
+
+    @FXML
+    private Pane AIPane2;
 
     @FXML
     private AnchorPane mainPane;
@@ -72,14 +77,31 @@ public class VersusGameController {
     	playerDeck.push(d.pop());
     	cardCounter.setText("Cards Remaining: "+d.getDeckSize());
 
-    	Deck temp = new Deck();
-    	temp.push(d.pop());
-    	Thread t = new Thread(new playerThread(d, temp, deckPane, AIPane1, cardCounter));
-    	t.setDaemon(true);
-    	t.start();
+    	initPlayers();
     	
     	displayCard(playerDeck.peek(),playerPane, true);
     	displayCard(d.peek(),deckPane, false);
+    }
+    
+    public void initPlayers()
+    {
+    	Deck temp = new Deck();
+    	temp.push(d.pop());
+    	Thread t0 = new Thread(new playerThread(d, temp, deckPane, AIPane1, cardCounter));
+    	t0.setDaemon(true);
+    	t0.start();
+    	
+    	temp = new Deck();
+    	temp.push(d.pop());
+    	Thread t1 = new Thread(new playerThread(d, temp, deckPane, AIPane2, cardCounter));
+    	t1.setDaemon(true);
+    	t1.start();
+    	
+    	temp = new Deck();
+    	temp.push(d.pop());
+    	Thread t2 = new Thread(new playerThread(d, temp, deckPane, AIPane3, cardCounter));
+    	t2.setDaemon(true);
+    	t2.start();
     }
     
     public void check(MouseEvent e)
@@ -87,7 +109,7 @@ public class VersusGameController {
     	ImageView n = (ImageView)e.getTarget();
     	loadedImage img = (loadedImage)n.getImage();
     	
-    	boolean match = checkMatch(img.getPath(), playerPane);
+    	boolean match = checkMatch(img.getPath(), deckPane);
     	
     	if(match)
     	{
@@ -132,9 +154,9 @@ public class VersusGameController {
     public void displayCard(Card c, Pane p, boolean isPlayer)
     {
     	p.getChildren().clear();
-    	Circle circle = new Circle(260);
-    	circle.setTranslateX(260);
-    	circle.setTranslateY(260);
+    	Circle circle = new Circle(p.getPrefHeight()/2);
+    	circle.setTranslateX(p.getPrefHeight()/2);
+    	circle.setTranslateY(p.getPrefHeight()/2);
     	circle.setFill(Color.WHITE);
     	circle.setStroke(Color.BLACK);
     	
@@ -164,7 +186,7 @@ public class VersusGameController {
         	boolean intersects;
         	do {
         		intersects = false;
-	        	double[] point = randPoint();
+	        	double[] point = randPoint(p.getPrefHeight()/2);
 	        	i.setTranslateX(point[0]);
 	        	i.setTranslateY(point[1]);
 	        	
@@ -184,13 +206,13 @@ public class VersusGameController {
     	p.getChildren().add(0, circle);
     }
     
-    public double[] randPoint()
+    public double[] randPoint(double r)
     {
     	double[] point = new double[2];
     	double angle = Math.random() * 2 * Math.PI;
-    	double hyp = Math.sqrt(Math.random()) * 190;
-    	point[0] = 225+(Math.cos(angle) * hyp);
-    	point[1] = 225+(Math.sin(angle) * hyp);
+    	double hyp = Math.sqrt(Math.random()) * (3.0/4.0) * r;
+    	point[0] = r-40+(Math.cos(angle) * hyp);
+    	point[1] = r-40+(Math.sin(angle) * hyp);
     	return point;
     }
     

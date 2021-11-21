@@ -9,12 +9,31 @@
 
 <AnchorPane fx:id="mainPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.VersusGameController">
    <children>
-      <Pane fx:id="playerPane" layoutX="43.0" layoutY="250.0" prefHeight="520.0" prefWidth="520.0" />
-      <Pane fx:id="deckPane" layoutX="624.0" layoutY="250.0" prefHeight="520.0" prefWidth="520.0" />
+      <Pane fx:id="playerPane" layoutX="27.0" layoutY="325.0" prefHeight="450.0" prefWidth="450.0">
+         <children>
+            <Circle fill="DODGERBLUE" layoutX="225.0" layoutY="225.0" radius="225.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></Pane>
+      <Pane fx:id="deckPane" layoutX="534.0" layoutY="331.0" prefHeight="350.0" prefWidth="350.0">
+         <children>
+            <Circle fill="DODGERBLUE" layoutX="175.0" layoutY="175.0" radius="175.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></Pane>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToGameStart" text="Back" />
-      <Label fx:id="cardCounter" layoutX="335.0" layoutY="204.0" prefHeight="21.0" prefWidth="228.0" text="Cards remaining : " />
+      <Label fx:id="cardCounter" layoutX="12.0" layoutY="164.0" prefHeight="21.0" prefWidth="228.0" text="Cards remaining : " />
       <Button fx:id="submitButton" layoutX="1031.0" layoutY="183.0" mnemonicParsing="false" onAction="#submitScore" opacity="0.0" text="Submit Score!" />
       <Button fx:id="replayButton" layoutX="40.0" layoutY="183.0" mnemonicParsing="false" onAction="#resetGame" opacity="0.0" text="Replay (Same Settings)" />
-      <Pane fx:id="AIPane1" layoutX="440.0" layoutY="14.0" prefHeight="320.0" prefWidth="320.0" />
+      <Pane fx:id="AIPane1" layoutX="465.0" layoutY="45.0" prefHeight="250.0" prefWidth="250.0">
+         <children>
+            <Circle fill="DODGERBLUE" layoutX="125.0" layoutY="125.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></Pane>
+      <Pane fx:id="AIPane2" layoutX="781.0" layoutY="61.0" prefHeight="250.0" prefWidth="250.0">
+         <children>
+            <Circle fill="DODGERBLUE" layoutX="125.0" layoutY="125.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Pane>
+      <Pane fx:id="AIPane3" layoutX="936.0" layoutY="337.0" prefHeight="250.0" prefWidth="250.0">
+         <children>
+            <Circle fill="DODGERBLUE" layoutX="125.0" layoutY="125.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

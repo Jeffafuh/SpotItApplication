@@ -72,6 +72,8 @@ public class Deck {
 				cnt = (cnt+1)%symbols.size();
 			}
 		}
+		
+		shuffleDeck();
 	}
 	
 	/**

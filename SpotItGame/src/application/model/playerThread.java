@@ -21,7 +21,6 @@ public class playerThread extends Task<Integer>{
 	private Pane playerPane;
 	private Label cardCounter;
 	
-	
 	public playerThread(Deck d, Deck playerDeck, Pane deckPane, Pane playerPane, Label cardCounter) {
 		this.d = d;
 		this.playerDeck = playerDeck;
@@ -35,9 +34,9 @@ public class playerThread extends Task<Integer>{
 	public void displayCard(Card c, Pane p)
     {
     	p.getChildren().clear();
-    	Circle circle = new Circle(160);
-    	circle.setTranslateX(160);
-    	circle.setTranslateY(160);
+    	Circle circle = new Circle(p.getPrefHeight()/2);
+    	circle.setTranslateX(p.getPrefHeight()/2);
+    	circle.setTranslateY(p.getPrefHeight()/2);
     	circle.setFill(Color.WHITE);
     	circle.setStroke(Color.BLACK);
     	
@@ -62,7 +61,7 @@ public class playerThread extends Task<Integer>{
         	boolean intersects;
         	do {
         		intersects = false;
-	        	double[] point = randPoint();
+	        	double[] point = randPoint(p.getPrefHeight()/2);
 	        	i.setTranslateX(point[0]);
 	        	i.setTranslateY(point[1]);
 	        	
@@ -101,13 +100,13 @@ public class playerThread extends Task<Integer>{
     	return match;
     }
 	
-	public double[] randPoint()
+	public double[] randPoint(double r)
     {
     	double[] point = new double[2];
     	double angle = Math.random() * 2 * Math.PI;
-    	double hyp = Math.sqrt(Math.random()) * 100;
-    	point[0] = 100+(Math.cos(angle) * hyp);
-    	point[1] = 100+(Math.sin(angle) * hyp);
+    	double hyp = Math.sqrt(Math.random()) * (3.0/4.0) * r;
+    	point[0] = r+(Math.cos(angle) * hyp);
+    	point[1] = r+(Math.sin(angle) * hyp);
     	return point;
     }
 
