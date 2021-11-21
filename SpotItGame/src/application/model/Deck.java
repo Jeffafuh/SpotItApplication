@@ -23,16 +23,23 @@ public class Deck {
 		cards.clear();
 	}
 	
+	public Card peek()
+	{
+		if(!isDeckEmpty())
+			return cards.get(0);
+		else return new Card();
+	}
+	
 	public Card pop()
 	{
 		if(!isDeckEmpty())
 			return cards.remove(0);
-		else return null;
+		else return new Card();
 	}
 	
 	public void push(Card c)
 	{
-		cards.add(c);
+		cards.add(0,c);
 	}
 	
 	public boolean isDeckEmpty()
@@ -65,6 +72,8 @@ public class Deck {
 				cnt = (cnt+1)%symbols.size();
 			}
 		}
+		
+		shuffleDeck();
 	}
 	
 	/**

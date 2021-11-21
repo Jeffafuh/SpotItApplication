@@ -40,6 +40,9 @@ public class GameController {
 	
 	@FXML
     private Label timer;
+	
+	@FXML
+    private Label timerPenalty;
 
 	@FXML
     private Pane rightPane;
@@ -51,11 +54,11 @@ public class GameController {
     private AnchorPane mainPane;
     
     private Deck d;
-    
+    private GameTimer t;
     private int minSize;
 
     public void initialize()
-    {
+    {	
     	ArrayList<String> data = dataIO.readGameData();
     	d = new Deck();
     	int order = Integer.parseInt(data.get(0));
@@ -64,9 +67,13 @@ public class GameController {
     	d.shuffleDeck();
     	d.adjustDeck(Integer.parseInt(data.get(1))-(order*order+order+1));
     	displayCard(d.pop(),leftPane);
-    	displayCard(d.pop(),rightPane);
-    	cardCounter.setText("Cards remaining in deck: "+d.getDeckSize());
-    	//testButton.setOnAction(actionEvent -> check(actionEvent));
+    	displayCard(d.peek(),rightPane);
+    	cardCounter.setText("# of matches remaining: "+d.getDeckSize());
+
+    	t = new GameTimer(timerPenalty, timer, d);
+    	Thread thread = new Thread(t);
+    	thread.setDaemon(true);
+    	thread.start();
     }
     
     public void check(MouseEvent e)
@@ -86,17 +93,24 @@ public class GameController {
     	
     	if(match)
     	{
-    		//displayCard(d.pop(),(Pane)n.getParent());
-    		Card toDisplay = d.pop();
-    		if(toDisplay != null)
+    		d.pop();
+    		Card toDisplay = d.peek();
+    		if(!d.isDeckEmpty())
     		{
     			if(Math.random() < 0.5)
 	    			displayCard(toDisplay, leftPane);
 	    		else
 	    			displayCard(toDisplay, rightPane);
-    			cardCounter.setText("Cards remaining in deck: "+d.getDeckSize());
     		}
     		else gameEnd();
+    		cardCounter.setText("# of matches remaining: "+d.getDeckSize());
+    	}
+    	else
+    	{
+    		t.addTime(5);
+    		timerPenalty.setOpacity(1);
+    		timerPenalty.setLayoutX(e.getSceneX()+25);
+    		timerPenalty.setLayoutY(e.getSceneY()+25);
     	}
     }
     
@@ -208,6 +222,8 @@ public class GameController {
     
     @FXML
     void switchToGameStart(ActionEvent event) throws IOException{
+    	d.emptyDeck();
+    	
     	URL url = new File("src/application/view/GameStart.fxml").toURI().toURL();
     	mainPane = FXMLLoader.load(url);
         Scene scene = new Scene(mainPane);// pane you are GOING TO show

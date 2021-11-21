@@ -11,5 +11,5 @@
 }
 
 #symbolImage:hover{
-	-fx-effect: dropshadow(gaussian, rgb(255, 0, 0), 20, 0.5, 0.0, 0.0);
+	-fx-effect: dropshadow(gaussian, rgb(0, 0, 255), 20, 0.5, 0.0, 0.0);
 }
