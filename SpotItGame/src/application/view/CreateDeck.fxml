@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateDeckController">
+   <children>
+      <Label layoutX="189.0" layoutY="140.0" prefHeight="27.0" prefWidth="150.0" text="Images Per Card:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="189.0" layoutY="189.0" prefHeight="27.0" prefWidth="150.0" text="Enter # of Cards:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="symbolSelect" layoutX="375.0" layoutY="139.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: white;">
+         <effect>
+            <DropShadow />
+         </effect></ChoiceBox>
+      <Button fx:id="generateButton" layoutX="567.0" layoutY="153.0" mnemonicParsing="false" onAction="#generateDeck" prefHeight="44.0" prefWidth="136.0" style="-fx-background-color: Gray;" text="Generate" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Text fill="WHITE" layoutX="232.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate Emoji-Based Cards!" wrappingWidth="456.21630859375">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="numCards" layoutX="375.0" layoutY="189.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: white;">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
+      <Label fx:id="errorText" layoutX="256.0" layoutY="242.0" prefHeight="27.0" prefWidth="109.0" textFill="RED" />
+      <Button fx:id="backButton" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="38.0" prefWidth="81.0" style="-fx-background-color: white;" text="Back">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

@@ -234,6 +234,18 @@ public class GameController {
         window.show();
     }
     
+    @FXML
+    void switchToCreate(ActionEvent event) throws IOException{
+    	URL url = new File("src/application/view/CreateDeck.fxml").toURI().toURL();
+    	mainPane = FXMLLoader.load(url);
+        Scene scene = new Scene(mainPane);// pane you are GOING TO show
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
+        scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+    	
+        window.setScene(scene);
+        window.show();
+    }
+    
     
 }
 
