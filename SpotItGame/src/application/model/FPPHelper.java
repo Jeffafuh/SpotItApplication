@@ -1,5 +1,11 @@
 package application.model;
 
+/**
+ * Class containing functions solely used for the purpose of constructing Finite Projective Planes with an order equal to a power of a prime
+ * 
+ * @author Jeff
+ * Fall 2021
+ */
 public class FPPHelper {
 	
 	private final static int[][] GF4add = {
@@ -62,6 +68,15 @@ public class FPPHelper {
 	            	{0, 8, 4, 7, 3, 2, 5, 1, 6}
 	            };
 	
+	/**
+	 * If the order is a power of a prime, a pre-determined value needs to be returned
+	 * Otherwise, add the operands and modulo them as regular.
+	 * 
+	 * @param a Operand 1
+	 * @param b Operand 2
+	 * @param N Order of the plane
+	 * @return Corresponding integer
+	 */
 	public static int add(int a, int b, int N) {
 		switch (N) {
 			case 4: return GF4add[a][b];
@@ -72,6 +87,15 @@ public class FPPHelper {
 
 	}
 
+	/**
+	 * If the order is a power of a prime, a pre-determined value needs to be returned
+	 * Otherwise, multiply the operands and modulo them as regular.
+	 * 
+	 * @param a Operand 1
+	 * @param b Operand 2
+	 * @param N Order of the plane
+	 * @return Corresponding integer
+	 */
 	public static int mul(int a, int b, int N) {
 		switch (N) {
 			case 4: return GF4mul[a][b];
