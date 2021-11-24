@@ -21,17 +21,23 @@ public class playerThread extends Task<Integer>{
 	private Pane playerPane;
 	private Label cardCounter;
 	
-	public playerThread(Deck d, Deck playerDeck, Pane deckPane, Pane playerPane, Label cardCounter) {
+	private double minPSize;
+	private double minDSize;
+	
+	public playerThread(int order, Deck d, Deck playerDeck, Pane deckPane, Pane playerPane, Label cardCounter) {
 		this.d = d;
 		this.playerDeck = playerDeck;
 		this.deckPane = deckPane;
 		this.playerPane = playerPane;
 		this.cardCounter = cardCounter;
 		
-		displayCard(playerDeck.peek(), playerPane);
+		minPSize = (-15.0/7.0) * order + 44;
+		minDSize = (-25.0/7.0) * order + 67;
+		
+		displayCard(playerDeck.peek(), playerPane, true);
 	}
 	
-	public void displayCard(Card c, Pane p)
+	public void displayCard(Card c, Pane p, boolean isPlayer)
     {
     	p.getChildren().clear();
     	Circle circle = new Circle(p.getPrefHeight()/2);
@@ -44,10 +50,6 @@ public class playerThread extends Task<Integer>{
     	for(Symbol symb : s)
     	{
     		ImageView i = new ImageView();
-    		int randSize = (int)(Math.random()*30+30);
-    		i.setPreserveRatio(true);
-    		i.setFitHeight(randSize);
-        	i.setFitWidth(randSize);
  
     		try {
         		loadedImage img = new loadedImage(symb.getSymbol().getPath());
@@ -55,9 +57,22 @@ public class playerThread extends Task<Integer>{
         	}
     		catch(Exception e) { e.printStackTrace(); }
     		
-        	i.setRotate(Math.random()*360);
-        	int counter = 0;
+    		double randSize;
+        	if(isPlayer)
+        	{
+        		randSize = (Math.random()*(40-minPSize)+minPSize);
+        	}
+        	else
+        	{
+        		randSize = (Math.random()*(60-minDSize)+minDSize);
+        	}
         	
+        	i.setPreserveRatio(true);
+        	i.setRotate(Math.random()*360);
+    		i.setFitHeight(randSize);
+        	i.setFitWidth(randSize);
+        	
+        	int counter = 0;
         	boolean intersects;
         	do {
         		intersects = false;
@@ -104,9 +119,9 @@ public class playerThread extends Task<Integer>{
     {
     	double[] point = new double[2];
     	double angle = Math.random() * 2 * Math.PI;
-    	double hyp = Math.sqrt(Math.random()) * (3.0/4.0) * r;
-    	point[0] = r+(Math.cos(angle) * hyp);
-    	point[1] = r+(Math.sin(angle) * hyp);
+    	double hyp = Math.sqrt(Math.random()) * (19.0/26.0) * r;
+    	point[0] = (45.0/52.0) * r+(Math.cos(angle) * hyp);
+    	point[1] = (45.0/52.0) * r+(Math.sin(angle) * hyp);
     	return point;
     }
 
@@ -140,8 +155,8 @@ public class playerThread extends Task<Integer>{
 	    		Platform.runLater(new Runnable() {
 	    			public void run()
 	    			{
-	    				displayCard(playerDeck.peek(), playerPane);
-	    	    		displayCard(d.peek(), deckPane);
+	    				displayCard(playerDeck.peek(), playerPane, true);
+	    	    		displayCard(d.peek(), deckPane, false);
 	    				cardCounter.setText("Cards Remaining: "+d.getDeckSize());
 	    			}
 	    		});

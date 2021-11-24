@@ -11,7 +11,7 @@ import java.util.Collections;
  */
 public class Deck {
 
-	public ArrayList<Card> cards;
+	private ArrayList<Card> cards;
 	private ArrayList<Symbol> symbols;
 	
 	/**
@@ -91,6 +91,16 @@ public class Deck {
 	public int getDeckSize()
 	{
 		return cards.size();
+	}
+	
+	/**
+	 * Returns the number of symbols used for the deck
+	 * 
+	 * @return Size of the symbols list
+	 */
+	public int getSymbolSize()
+	{
+		return symbols.size();
 	}
 	
 	/**

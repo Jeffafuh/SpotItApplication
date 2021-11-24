@@ -19,7 +19,6 @@
          </children></Pane>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToGameStart" text="Back" />
       <Label fx:id="cardCounter" layoutX="12.0" layoutY="164.0" prefHeight="21.0" prefWidth="228.0" text="Cards remaining : " />
-      <Button fx:id="submitButton" layoutX="1031.0" layoutY="183.0" mnemonicParsing="false" onAction="#submitScore" opacity="0.0" text="Submit Score!" />
       <Button fx:id="replayButton" layoutX="40.0" layoutY="183.0" mnemonicParsing="false" onAction="#resetGame" opacity="0.0" text="Replay (Same Settings)" />
       <Pane fx:id="AIPane1" layoutX="465.0" layoutY="45.0" prefHeight="250.0" prefWidth="250.0">
          <children>

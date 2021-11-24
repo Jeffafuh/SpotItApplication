@@ -30,9 +30,6 @@ import javafx.stage.Stage;
 public class VersusGameController {
 	
 	@FXML
-    private Button submitButton;
-	
-	@FXML
     private Button replayButton;
 	
 	@FXML
@@ -60,7 +57,8 @@ public class VersusGameController {
     
     private Deck playerDeck;
     
-    private int minSize;
+    private double minPSize;
+    private double minDSize;
 
     public void initialize()
     {	
@@ -69,7 +67,8 @@ public class VersusGameController {
     	playerDeck = new Deck();
     	
     	int order = Integer.parseInt(data.get(0));
-    	minSize = -10*order+120;
+    	minDSize = (-25.0/7.0) * order + 67;
+    	minPSize = (-55.0/7.0) * order + 105;
     	d.constructNewDeck(order);
     	d.shuffleDeck();
     	d.adjustDeck(Integer.parseInt(data.get(1))-(order*order+order+1));
@@ -77,29 +76,29 @@ public class VersusGameController {
     	playerDeck.push(d.pop());
     	cardCounter.setText("Cards Remaining: "+d.getDeckSize());
 
-    	initPlayers();
+    	initPlayers(order);
     	
     	displayCard(playerDeck.peek(),playerPane, true);
     	displayCard(d.peek(),deckPane, false);
     }
     
-    public void initPlayers()
+    public void initPlayers(int order)
     {
     	Deck temp = new Deck();
     	temp.push(d.pop());
-    	Thread t0 = new Thread(new playerThread(d, temp, deckPane, AIPane1, cardCounter));
+    	Thread t0 = new Thread(new playerThread(order, d, temp, deckPane, AIPane1, cardCounter));
     	t0.setDaemon(true);
     	t0.start();
     	
     	temp = new Deck();
     	temp.push(d.pop());
-    	Thread t1 = new Thread(new playerThread(d, temp, deckPane, AIPane2, cardCounter));
+    	Thread t1 = new Thread(new playerThread(order, d, temp, deckPane, AIPane2, cardCounter));
     	t1.setDaemon(true);
     	t1.start();
     	
     	temp = new Deck();
     	temp.push(d.pop());
-    	Thread t2 = new Thread(new playerThread(d, temp, deckPane, AIPane3, cardCounter));
+    	Thread t2 = new Thread(new playerThread(order, d, temp, deckPane, AIPane3, cardCounter));
     	t2.setDaemon(true);
     	t2.start();
     }
@@ -117,7 +116,7 @@ public class VersusGameController {
     		if(!d.isDeckEmpty())
     		{
     			displayCard(playerDeck.peek(), playerPane, true);
-    			displayCard(d.peek(), deckPane, true);
+    			displayCard(d.peek(), deckPane, false);
     		}
     		else gameEnd();
     		
@@ -128,7 +127,6 @@ public class VersusGameController {
     public void gameEnd()
     {
     	replayButton.setOpacity(1);
-    	submitButton.setOpacity(1);
     	displayCard(new Card(), deckPane, false);
     }
     
@@ -164,10 +162,6 @@ public class VersusGameController {
     	for(Symbol symb : s)
     	{
     		ImageView i = new ImageView();
-    		int randSize = (int)(Math.random()*(100-minSize)+minSize);
-    		i.setPreserveRatio(true);
-    		i.setFitHeight(randSize);
-        	i.setFitWidth(randSize);
  
     		try {
         		loadedImage img = new loadedImage(symb.getSymbol().getPath());
@@ -175,14 +169,24 @@ public class VersusGameController {
         	}
     		catch(Exception e) { e.printStackTrace(); }
     		
-        	i.setRotate(Math.random()*360);
+        	double randSize;
         	if(isPlayer)
         	{
         		i.setId("symbolImage");
         		i.setOnMouseClicked(MouseEvent -> check(MouseEvent));
+        		randSize = (Math.random()*(90-minPSize)+minPSize);
         	}
-        	int counter = 0;
+        	else
+        	{
+        		randSize = (Math.random()*(60-minDSize)+minDSize);
+        	}
         	
+        	i.setPreserveRatio(true);
+        	i.setRotate(Math.random()*360);
+    		i.setFitHeight(randSize);
+        	i.setFitWidth(randSize);
+        	
+        	int counter = 0;
         	boolean intersects;
         	do {
         		intersects = false;
@@ -210,15 +214,10 @@ public class VersusGameController {
     {
     	double[] point = new double[2];
     	double angle = Math.random() * 2 * Math.PI;
-    	double hyp = Math.sqrt(Math.random()) * (3.0/4.0) * r;
-    	point[0] = r-40+(Math.cos(angle) * hyp);
-    	point[1] = r-40+(Math.sin(angle) * hyp);
+    	double hyp = Math.sqrt(Math.random()) * (19.0/26.0) * r;
+    	point[0] = (45.0/52.0) * r+(Math.cos(angle) * hyp);
+    	point[1] = (45.0/52.0) * r+(Math.sin(angle) * hyp);
     	return point;
-    }
-    
-    @FXML
-    void submitScore(ActionEvent event) {
-
     }
     
     @FXML
