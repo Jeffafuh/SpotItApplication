@@ -27,8 +27,8 @@ public class aiThread extends gameThread{
 
 		while(!getD().isDeckEmpty())
 		{
-			int randSeconds = (int)(Math.random()*5+3);
-			Thread.sleep(6 * 1000);
+			int randSeconds = (int)(Math.random()*6+3);
+			Thread.sleep(randSeconds * 1000);
 			
 			if(getD().isDeckEmpty())
 	    	{
