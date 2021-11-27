@@ -88,4 +88,44 @@ public class dataIO {
 		
 		return a;
 	}
+	
+	/**
+	 * writes the selected color to the file
+	 * @param selectedColor
+	 */
+	public static void writeColor(String selectedColor)
+	{
+		try{
+			File fileOut = new File("data/gameColor.txt");
+			FileWriter out = new FileWriter(fileOut);
+
+			out.write(selectedColor);
+			out.close();
+		}
+		catch(Exception e) { e.printStackTrace(); }
+	}
+	
+	/**
+	 * reads the color from the color file and returns a string
+	 * @return
+	 */
+	public static String readColor()
+	{
+		String s = "";
+		
+		try{
+			Scanner in = new Scanner(new File("data/gameColor.txt"));
+			
+			String line = in.nextLine();
+			String[] data = line.split(" ");
+			for(String c: data)
+				s+=c;
+			
+			in.close();
+		}
+		catch(Exception e) { e.printStackTrace(); }
+		
+		return s;
+	}
+	
 }
