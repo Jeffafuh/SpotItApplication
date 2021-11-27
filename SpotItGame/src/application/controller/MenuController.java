@@ -13,11 +13,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MenuController {
-	
+	//instantiate action objects
 	@FXML
 	private AnchorPane mainPane;
 
     @FXML
+    /**
+     * method to switch to the leaderboard screen
+     * @param event
+     * @throws IOException
+     */
     void switchLeaderboards(ActionEvent event) throws IOException{
     	URL url = new File("src/application/view/Leaderboard.fxml").toURI().toURL();
     	mainPane = FXMLLoader.load(url);
@@ -31,6 +36,11 @@ public class MenuController {
     }
 
     @FXML
+    /**
+     * method that handles switching to the create screen
+     * @param event
+     * @throws IOException
+     */
     void switchToCreate(ActionEvent event) throws IOException {
     	URL url = new File("src/application/view/CreateDeck.fxml").toURI().toURL();
     	mainPane = FXMLLoader.load(url);
@@ -43,6 +53,11 @@ public class MenuController {
     }
 
     @FXML
+    /**
+     * method that handles switching to the game screen
+     * @param event
+     * @throws IOException
+     */
     void switchToPlay(ActionEvent event) throws IOException{
     	URL url = new File("src/application/view/GameStart.fxml").toURI().toURL();
     	mainPane = FXMLLoader.load(url);
