@@ -71,19 +71,27 @@ public class GameStartController {
     			cardNum = N*N+N+1;
     		else cardNum = Integer.parseInt(numCards.getText());
     		
-    		if(cardNum < 2)
-    		{
-    			throw new Exception("Please enter a number > 1");
-    		}
-    		
-    		dataIO.writeGameData(N, cardNum);
     		if(modeSelect.getValue() == 0)
+    		{
+    			if(cardNum < 2)
+        		{
+        			throw new Exception("Please have more than 1 card in the deck.");
+        		}
+    			dataIO.writeGameData(N, cardNum);
     			switchToGame(event);
-    		else switchToVersusGame(event);
+    		}
+    		else {
+    			if(cardNum < 5)
+        		{
+        			throw new Exception("Please have more than 5 cards in the deck.");
+        		}
+    			dataIO.writeGameData(N, cardNum);
+    			switchToVersusGame(event);
+    		}
     	}
     	catch(NumberFormatException e)
     	{
-    		errorText.setText("Please enter a valid number");
+    		errorText.setText("Please enter a valid number.");
     	}
     	catch(Exception e)
     	{
