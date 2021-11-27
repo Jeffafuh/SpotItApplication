@@ -75,7 +75,7 @@ public class GameStartController {
     		{
     			if(cardNum < 2)
         		{
-        			throw new Exception("Please have more than 1 card in the deck");
+        			throw new Exception("Please have more than 1 card in the deck.");
         		}
     			dataIO.writeGameData(N, cardNum);
     			switchToGame(event);
@@ -83,7 +83,7 @@ public class GameStartController {
     		else {
     			if(cardNum < 5)
         		{
-        			throw new Exception("Please have more than 5 cards in the deck");
+        			throw new Exception("Please have more than 5 cards in the deck.");
         		}
     			dataIO.writeGameData(N, cardNum);
     			switchToVersusGame(event);
@@ -91,7 +91,7 @@ public class GameStartController {
     	}
     	catch(NumberFormatException e)
     	{
-    		errorText.setText("Please enter a valid number");
+    		errorText.setText("Please enter a valid number.");
     	}
     	catch(Exception e)
     	{
