@@ -1,12 +1,3 @@
-#symbolButton{
-	-fx-background-color: transparent;
-	-fx-background-position: 50%;
-}
-
-#symbolButton:hover{
-	-fx-background-color: red;
-}
-
 #symbolImage{
 }
 

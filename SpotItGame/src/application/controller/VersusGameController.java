@@ -4,14 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 
-import application.model.Card;
 import application.model.Deck;
-import application.model.Symbol;
 import application.model.dataIO;
-import application.model.loadedImage;
+import application.model.gameThread;
 import application.model.playerThread;
-import javafx.collections.ObservableList;
+import application.model.aiThread;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,12 +19,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class VersusGameController {
@@ -34,6 +30,12 @@ public class VersusGameController {
 	
 	@FXML
     private Label cardCounter;
+	
+	@FXML
+    private Label pCardCounter;
+	
+	@FXML
+    private Label winnerText;
 
 	@FXML
     private Pane deckPane;
@@ -49,175 +51,150 @@ public class VersusGameController {
 
     @FXML
     private Pane AIPane2;
+    
+    @FXML
+    private Label CardCounter3;
+
+    @FXML
+    private Label CardCounter2;
+
+    @FXML
+    private Label CardCounter1;
 
     @FXML
     private AnchorPane mainPane;
     
     private Deck d;
-    
-    private Deck playerDeck;
-    
-    private double minPSize;
-    private double minDSize;
+    private String username;
+    private aiThread ai1, ai2, ai3;
+    private playerThread player;
+    private int joinCnt;
 
     public void initialize()
     {	
+    	username = dataIO.readUsername();
     	ArrayList<String> data = dataIO.readGameData();
     	d = new Deck();
-    	playerDeck = new Deck();
     	
     	int order = Integer.parseInt(data.get(0));
-    	minDSize = (-25.0/7.0) * order + 67;
-    	minPSize = (-55.0/7.0) * order + 105;
     	d.constructNewDeck(order);
     	d.shuffleDeck();
     	d.adjustDeck(Integer.parseInt(data.get(1))-(order*order+order+1));
-    	
-    	playerDeck.push(d.pop());
-    	cardCounter.setText("Cards Remaining: "+d.getDeckSize());
 
-    	initPlayers(order);
-    	
-    	displayCard(playerDeck.peek(),playerPane, true);
-    	displayCard(d.peek(),deckPane, false);
+    	startGame(order);
     }
     
-    public void initPlayers(int order)
+    public void startGame(int order)
     {
+    	String[] names = {"Jeff", "Bhavya", "Anaya", "Joy", "Vamshi"};
+    	ArrayList<Integer> rand = new ArrayList<Integer>();
+    	for(int i = 0; i < names.length; i++)
+    		rand.add(i);
+    	Collections.shuffle(rand);
+    	
     	Deck temp = new Deck();
     	temp.push(d.pop());
-    	Thread t0 = new Thread(new playerThread(order, d, temp, deckPane, AIPane1, cardCounter));
+    	ai1 = new aiThread(names[rand.get(0)], order, d, temp, deckPane, AIPane1, cardCounter, CardCounter1);
+    	Thread t0 = new Thread(ai1);
     	t0.setDaemon(true);
     	t0.start();
     	
     	temp = new Deck();
     	temp.push(d.pop());
-    	Thread t1 = new Thread(new playerThread(order, d, temp, deckPane, AIPane2, cardCounter));
+    	ai2 = new aiThread(names[rand.get(1)], order, d, temp, deckPane, AIPane2, cardCounter, CardCounter2);
+    	Thread t1 = new Thread(ai2);
     	t1.setDaemon(true);
     	t1.start();
     	
     	temp = new Deck();
     	temp.push(d.pop());
-    	Thread t2 = new Thread(new playerThread(order, d, temp, deckPane, AIPane3, cardCounter));
+    	ai3 = new aiThread(names[rand.get(2)], order, d, temp, deckPane, AIPane3, cardCounter, CardCounter3);
+    	Thread t2 = new Thread(ai3);
     	t2.setDaemon(true);
     	t2.start();
+    	
+    	temp = new Deck();
+    	temp.push(d.pop());
+    	player = new playerThread(username, order, d, temp, deckPane, playerPane, cardCounter, pCardCounter);
+    	Thread p = new Thread(player);
+    	p.setDaemon(true);
+    	p.start();
+    	
+    	ai1.setOnSucceeded(e -> {
+    		gameEnd(e);
+    	});
+    	ai2.setOnSucceeded(e -> {
+    		gameEnd(e);
+    	});
+    	ai3.setOnSucceeded(e -> {
+    		gameEnd(e);
+    	});
+    	player.setOnSucceeded(e -> {
+    		gameEnd(e);
+    	});
+    	
+    	joinCnt = 0;
     }
     
-    public void check(MouseEvent e)
+    public void gameEnd(WorkerStateEvent e)
     {
-    	ImageView n = (ImageView)e.getTarget();
-    	loadedImage img = (loadedImage)n.getImage();
-    	
-    	boolean match = checkMatch(img.getPath(), deckPane);
-    	
-    	if(match)
+    	joinCnt++;
+    	if(joinCnt == 4)
     	{
-    		playerDeck.push(d.pop());
-    		if(!d.isDeckEmpty())
-    		{
-    			displayCard(playerDeck.peek(), playerPane, true);
-    			displayCard(d.peek(), deckPane, false);
-    		}
-    		else gameEnd();
+    		replayButton.setOpacity(1);
+    		ArrayList<gameThread> winners = findMaxThread(ai1, ai2, ai3, player);
     		
-    		cardCounter.setText("Cards Remaining: "+d.getDeckSize());
-    	}
-    }
-    
-    public void gameEnd()
-    {
-    	replayButton.setOpacity(1);
-    	displayCard(new Card(), deckPane, false);
-    }
-    
-    public boolean checkMatch(String path, Pane p)
-    {
-    	boolean match = false;
-    	ObservableList<Node> children = p.getChildren();
-    	
-    	for(int i = 1; i < children.size(); i++)
-    	{
-    		ImageView temp = (ImageView)children.get(i);
-    		loadedImage curImg = (loadedImage)temp.getImage();
-    		if(curImg.getPath().contentEquals(path))
+    		String outString = "";
+    		switch(winners.size())
     		{
-    			match = true;
+    		case 1:
+    			outString += "WINNER!\n";
+    			outString += "With "+winners.get(0).getPlayerDeck().getDeckSize()+" cards in their deck...\n";
+    			outString += winners.get(0).getUsername()+"!";
+    			break;
+    		default://more than 1 winner
+    			outString += "A TIE!\n";
+    			outString += "With "+winners.get(0).getPlayerDeck().getDeckSize()+" cards in their decks...\n";
+    			outString += winners.get(0).getUsername();
+    			for(int i = 1; i < winners.size() - 1; i++)
+    			{
+    				outString += ", "+winners.get(i).getUsername();
+    			}
+    			outString += " and "+winners.get(winners.size()-1).getUsername()+"!";
     			break;
     		}
+        	winnerText.setText(outString);
     	}
-    	
-    	return match;
-    }
-    
-    public void displayCard(Card c, Pane p, boolean isPlayer)
-    {
-    	p.getChildren().clear();
-    	Circle circle = new Circle(p.getPrefHeight()/2);
-    	circle.setTranslateX(p.getPrefHeight()/2);
-    	circle.setTranslateY(p.getPrefHeight()/2);
-    	circle.setFill(Color.WHITE);
-    	circle.setStroke(Color.BLACK);
-    	
-    	ArrayList<Symbol> s = c.getSymbolList();
-    	for(Symbol symb : s)
+    	else
     	{
-    		ImageView i = new ImageView();
- 
-    		try {
-        		loadedImage img = new loadedImage(symb.getSymbol().getPath());
-        		i.setImage(img);
-        	}
-    		catch(Exception e) { e.printStackTrace(); }
-    		
-        	double randSize;
-        	if(isPlayer)
-        	{
-        		i.setId("symbolImage");
-        		i.setOnMouseClicked(MouseEvent -> check(MouseEvent));
-        		randSize = (Math.random()*(90-minPSize)+minPSize);
-        	}
-        	else
-        	{
-        		randSize = (Math.random()*(60-minDSize)+minDSize);
-        	}
-        	
-        	i.setPreserveRatio(true);
-        	i.setRotate(Math.random()*360);
-    		i.setFitHeight(randSize);
-        	i.setFitWidth(randSize);
-        	
-        	int counter = 0;
-        	boolean intersects;
-        	do {
-        		intersects = false;
-	        	double[] point = randPoint(p.getPrefHeight()/2);
-	        	i.setTranslateX(point[0]);
-	        	i.setTranslateY(point[1]);
-	        	
-	        	for(Node n : p.getChildren())
-	        	{
-	        		if(i.getBoundsInParent().intersects(n.getBoundsInParent()))
-	        		{
-	        			intersects = true;
-	        		}
-	        	}
-	        	counter++;
-        	}while(intersects && counter < 1000);
-        	
-        	p.getChildren().add(i);
+    		String outText = "Calculating results";
+    		for(int i = 0; i < joinCnt; i++)
+    		{
+    			outText += ".";
+    		}
+    		winnerText.setText(outText);
     	}
-    	
-    	p.getChildren().add(0, circle);
     }
     
-    public double[] randPoint(double r)
+    public ArrayList<gameThread> findMaxThread(gameThread... a)
     {
-    	double[] point = new double[2];
-    	double angle = Math.random() * 2 * Math.PI;
-    	double hyp = Math.sqrt(Math.random()) * (19.0/26.0) * r;
-    	point[0] = (45.0/52.0) * r+(Math.cos(angle) * hyp);
-    	point[1] = (45.0/52.0) * r+(Math.sin(angle) * hyp);
-    	return point;
+    	ArrayList<gameThread> max = new ArrayList<gameThread>();
+    	max.add(a[0]);
+    	
+    	for(int i = 1; i < a.length; i++)
+    	{
+    		if(a[i].getPlayerDeck().getDeckSize() > max.get(0).getPlayerDeck().getDeckSize())
+    		{
+    			max.clear();
+    			max.add(a[i]);
+    		}
+    		else if(a[i].getPlayerDeck().getDeckSize() == max.get(0).getPlayerDeck().getDeckSize())
+    		{
+    			max.add(a[i]);
+    		}
+    	}
+    	
+    	return max;
     }
     
     @FXML

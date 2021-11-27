@@ -5,18 +5,19 @@ import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class playerThread extends gameThread{
+public class aiThread extends gameThread{
 	
-	public playerThread(String username, int order, Deck d, Deck playerDeck, Pane deckPane, Pane playerPane, Label cardCounter, Label pCardCounter) {
+	public aiThread(String username, int order, Deck d, Deck playerDeck, Pane deckPane, Pane playerPane, Label cardCounter, Label pCardCounter) {
 		super(username, order, d, playerDeck, deckPane, playerPane, cardCounter, pCardCounter);
 		
-		setMinPSize((-55.0/7.0) * order + 105);
+		setMinPSize((-15.0/7.0) * order + 44);
 		displayCards();
 		updateCounters();
 	}
@@ -26,7 +27,36 @@ public class playerThread extends gameThread{
 
 		while(!getD().isDeckEmpty())
 		{
-			System.out.print("");
+			int randSeconds = (int)(Math.random()*5+3);
+			Thread.sleep(6 * 1000);
+			
+			if(getD().isDeckEmpty())
+	    	{
+	    		break;
+	    	}
+			
+			Card top = getPlayerDeck().peek();
+			int randSymb = 1+(int)(Math.random()*(top.getSymbolList().size()));
+			
+			ImageView n = (ImageView)getPlayerPane().getChildren().get(randSymb);
+	    	loadedImage img = (loadedImage)n.getImage();
+	    	
+	    	Platform.runLater(() -> {
+	    		n.setEffect(new DropShadow(BlurType.GAUSSIAN, Color.color(1, 0, 0), 20, 0.5, 0.0, 0.0));
+	    	});
+	    	Thread.sleep(500);
+	    	Platform.runLater(() -> {
+	    		n.setEffect(null);
+	    	});
+	    	
+	    	if(getD().isDeckEmpty())
+	    	{
+	    		break;
+	    	}
+	    	
+	    	Platform.runLater(() -> {
+	    		gameThread.checkMatch(img.getPath(), this);
+	    	});
 		}
 	
 		return getPlayerDeck().getDeckSize();
@@ -55,9 +85,7 @@ public class playerThread extends gameThread{
     		double randSize;
         	if(isPlayer)
         	{
-        		i.setId("symbolImage");
-        		i.setOnMouseClicked(MouseEvent -> check(MouseEvent));
-        		randSize = (Math.random()*(90-getMinPSize())+getMinPSize());
+        		randSize = (Math.random()*(40-getMinPSize())+getMinPSize());
         	}
         	else
         	{
@@ -91,15 +119,5 @@ public class playerThread extends gameThread{
     	}
     	
     	p.getChildren().add(0, circle);
-    }
-	
-	public void check(MouseEvent e)
-    {
-    	ImageView n = (ImageView)e.getTarget();
-    	loadedImage img = (loadedImage)n.getImage();
-    	
-    	Platform.runLater(() -> {
-    		gameThread.checkMatch(img.getPath(), this);
-    	});
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
@@ -7,32 +8,46 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.VersusGameController">
+<AnchorPane fx:id="aiCounter1" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.VersusGameController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="310.0" layoutX="929.0" layoutY="434.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="310.0" layoutX="554.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="310.0" layoutX="906.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="399.0" layoutX="523.0" layoutY="364.0" stroke="BLACK" strokeType="INSIDE" width="350.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="525.0" layoutX="27.0" layoutY="250.0" stroke="BLACK" strokeType="INSIDE" width="450.0" />
       <Pane fx:id="playerPane" layoutX="27.0" layoutY="325.0" prefHeight="450.0" prefWidth="450.0">
          <children>
-            <Circle fill="DODGERBLUE" layoutX="225.0" layoutY="225.0" radius="225.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#1f93ff00" layoutX="225.0" layoutY="225.0" radius="225.0" stroke="BLACK" strokeType="INSIDE" />
          </children></Pane>
-      <Pane fx:id="deckPane" layoutX="534.0" layoutY="331.0" prefHeight="350.0" prefWidth="350.0">
+      <Pane fx:id="deckPane" layoutX="523.0" layoutY="364.0" prefHeight="350.0" prefWidth="350.0">
          <children>
-            <Circle fill="DODGERBLUE" layoutX="175.0" layoutY="175.0" radius="175.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#1f93ff00" layoutX="175.0" layoutY="175.0" radius="175.0" stroke="BLACK" strokeType="INSIDE" />
          </children></Pane>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToGameStart" text="Back" />
-      <Label fx:id="cardCounter" layoutX="12.0" layoutY="164.0" prefHeight="21.0" prefWidth="228.0" text="Cards remaining : " />
+      <Label fx:id="cardCounter" layoutX="534.0" layoutY="707.0" prefHeight="46.0" prefWidth="228.0" text="Deck&#10;Cards remaining : " />
       <Button fx:id="replayButton" layoutX="40.0" layoutY="183.0" mnemonicParsing="false" onAction="#resetGame" opacity="0.0" text="Replay (Same Settings)" />
-      <Pane fx:id="AIPane1" layoutX="465.0" layoutY="45.0" prefHeight="250.0" prefWidth="250.0">
+      <Pane fx:id="AIPane1" layoutX="554.0" layoutY="81.0" prefHeight="250.0" prefWidth="250.0">
          <children>
-            <Circle fill="DODGERBLUE" layoutX="125.0" layoutY="125.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#1f93ff00" layoutX="125.0" layoutY="125.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
          </children></Pane>
-      <Pane fx:id="AIPane2" layoutX="781.0" layoutY="61.0" prefHeight="250.0" prefWidth="250.0">
+      <Pane fx:id="AIPane2" layoutX="906.0" layoutY="118.0" prefHeight="250.0" prefWidth="250.0">
          <children>
-            <Circle fill="DODGERBLUE" layoutX="125.0" layoutY="125.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#1f93ff00" layoutX="125.0" layoutY="125.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Pane>
-      <Pane fx:id="AIPane3" layoutX="936.0" layoutY="337.0" prefHeight="250.0" prefWidth="250.0">
+      <Pane fx:id="AIPane3" layoutX="929.0" layoutY="493.0" prefHeight="250.0" prefWidth="250.0">
          <children>
-            <Circle fill="DODGERBLUE" layoutX="125.0" layoutY="125.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#1f93ff00" layoutX="125.0" layoutY="125.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Pane>
+      <Label fx:id="pCardCounter" layoutX="40.0" layoutY="262.0" prefHeight="46.0" prefWidth="172.0" text="&lt;username&gt;&#10;Cards in deck:" />
+      <Label fx:id="CardCounter1" layoutX="562.0" layoutY="29.0" prefHeight="46.0" prefWidth="172.0" text="&lt;username&gt;&#10;Cards in deck:" />
+      <Label fx:id="CardCounter2" layoutX="915.0" layoutY="65.0" prefHeight="46.0" prefWidth="172.0" text="&lt;username&gt;&#10;Cards in deck:" />
+      <Label fx:id="CardCounter3" layoutX="936.0" layoutY="440.0" prefHeight="46.0" prefWidth="172.0" text="&lt;username&gt;&#10;Cards in deck:" />
+      <Label fx:id="winnerText" alignment="TOP_CENTER" layoutX="117.0" layoutY="49.0" prefHeight="125.0" prefWidth="310.0" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
