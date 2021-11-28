@@ -5,8 +5,12 @@ This is application was created as the final group project for the class CS-3443
 Group Members:
 
 -Jeff Dong
+
 -Bhavya Gokana
+
 -Anaya Hartfield
+
 -Joy Kiprotich
+
 -Vamshi Ponnala
 
