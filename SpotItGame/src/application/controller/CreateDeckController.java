@@ -25,6 +25,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+/**
+ * Main controller for CreateDeck.fxml
+ * Handles the logic for displaying all the cards in a deck
+ * 
+ * @author Anaya Hartfield
+ * Fall 2021
+ */
 public class CreateDeckController {
 	
 	@FXML
@@ -50,7 +57,9 @@ public class CreateDeckController {
     
     private double minSize;
     
-    
+    /**
+     * Adds all options to the selection menu, selects the first option by default
+     */
     @FXML
     public void initialize()
     {
@@ -65,6 +74,11 @@ public class CreateDeckController {
     	symbolSelect.getSelectionModel().select(0);
     }
     
+    /**
+     * Gets the number of symbols requested by the selection menu
+     * 
+     * @return Number of symbols on the symbol select
+     */
     public int getNumSymbols()
     {
     	String s = symbolSelect.getValue();
@@ -72,6 +86,10 @@ public class CreateDeckController {
     	return a;
     }
 
+    /**
+     * Generates a deck of cards according to the requested parameters and generates a 3xN grid of the deck displaying every card
+     * Puts the final pane onto the scroll pane
+     */
     @FXML
     void generateDeck(ActionEvent event) throws IOException {
 		int N = getNumSymbols()-1;
@@ -96,6 +114,9 @@ public class CreateDeckController {
 		}
     }
     
+    /**
+	 * Displays a single card onto the pane specified
+	 */
     public void displayCard(Card c, Pane p)
     {
     	Circle circle = new Circle(175);
@@ -146,6 +167,12 @@ public class CreateDeckController {
     	p.getChildren().add(0, circle);
     }
     
+    /**
+	 * Generates a random point inside a circle with radius r
+	 * 
+	 * @param r Radius of the circle
+	 * @return Double array containing the point inside the circle
+	 */
     public double[] randPoint(double r)
     {
     	double[] point = new double[2];
@@ -156,6 +183,9 @@ public class CreateDeckController {
     	return point;
     }
     
+    /**
+     * Switches the scene back to the main menu
+     */
     @FXML
     void switchToMenu(ActionEvent event) throws IOException {
     	URL url = new File("src/application/view/Menu.fxml").toURI().toURL();
