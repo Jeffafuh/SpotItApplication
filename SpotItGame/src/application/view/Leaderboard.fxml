@@ -11,125 +11,125 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #17aeae;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LeaderboardController">
    <children>
-      <Label layoutX="811.0" layoutY="123.0" text="Leaderboard" textFill="#f3f8f8">
+      <Label layoutX="805.0" layoutY="135.0" text="Leaderboard" textFill="#f3f8f8">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font></Label>
-      <Label layoutX="768.0" layoutY="38.0" prefHeight="91.0" prefWidth="309.0" text="SPOT IT!" textFill="#eff5f5">
+      <Label layoutX="762.0" layoutY="50.0" prefHeight="91.0" prefWidth="309.0" text="SPOT IT!" textFill="#eff5f5">
          <font>
             <Font name="Comic Sans MS Bold" size="64.0" />
          </font>
       </Label>
-      <ImageView fitHeight="62.0" fitWidth="70.0" layoutX="131.0" layoutY="220.0">
+      <ImageView fitHeight="62.0" fitWidth="70.0" layoutX="87.0" layoutY="250.0">
          <image>
             <Image url="@../../../leaderboard-images/first.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="70.0" layoutX="131.0" layoutY="358.0">
+      <ImageView fitHeight="62.0" fitWidth="70.0" layoutX="87.0" layoutY="388.0">
          <image>
             <Image url="@../../../leaderboard-images/Second.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="52.0" fitWidth="54.0" layoutX="139.0" layoutY="510.0">
+      <ImageView fitHeight="52.0" fitWidth="54.0" layoutX="95.0" layoutY="540.0">
          <image>
             <Image url="@../../../leaderboard-images/third.png" />
          </image>
       </ImageView>
-      <Text fill="#fcf9f2" fontSmoothingType="LCD" layoutX="157.0" layoutY="693.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" wrappingWidth="17.9013671875">
+      <Text fill="#fcf9f2" fontSmoothingType="LCD" layoutX="113.0" layoutY="723.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" wrappingWidth="17.9013671875">
          <font>
             <Font name="Franklin Gothic Medium" size="36.0" />
          </font>
       </Text>
-      <ImageView fitHeight="99.0" fitWidth="118.0" layoutX="201.0" layoutY="201.0">
+      <ImageView fitHeight="99.0" fitWidth="118.0" layoutX="157.0" layoutY="231.0">
          <image>
             <Image url="@../../../leaderboard-images/person.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="99.0" fitWidth="118.0" layoutX="201.0" layoutY="486.0">
+      <ImageView fitHeight="99.0" fitWidth="118.0" layoutX="157.0" layoutY="516.0">
          <image>
             <Image url="@../../../leaderboard-images/person.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="99.0" fitWidth="118.0" layoutX="201.0" layoutY="631.0">
+      <ImageView fitHeight="99.0" fitWidth="118.0" layoutX="157.0" layoutY="661.0">
          <image>
             <Image url="@../../../leaderboard-images/person.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="99.0" fitWidth="118.0" layoutX="201.0" layoutY="339.0">
+      <ImageView fitHeight="99.0" fitWidth="118.0" layoutX="157.0" layoutY="369.0">
          <image>
             <Image url="@../../../leaderboard-images/person.png" />
          </image>
       </ImageView>
-      <Label layoutX="357.0" layoutY="225.0" prefHeight="52.0" prefWidth="800.0" style="-fx-background-color: #636b6b;" text="                          *****     " textFill="#feffff">
+      <Label layoutX="313.0" layoutY="255.0" prefHeight="52.0" prefWidth="800.0" style="-fx-background-color: #636b6b;" text="                          *****     " textFill="#feffff">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font>
       </Label>
-      <Label layoutX="357.0" layoutY="363.0" prefHeight="52.0" prefWidth="800.0" style="-fx-background-color: #636b6b;" text="                          ****      " textFill="#feffff">
+      <Label layoutX="313.0" layoutY="393.0" prefHeight="52.0" prefWidth="800.0" style="-fx-background-color: #636b6b;" text="                          ****      " textFill="#feffff">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font>
       </Label>
-      <Label layoutX="357.0" layoutY="510.0" prefHeight="52.0" prefWidth="800.0" style="-fx-background-color: #636b6b;" text="                          ***       " textFill="#feffff">
+      <Label layoutX="313.0" layoutY="540.0" prefHeight="52.0" prefWidth="800.0" style="-fx-background-color: #636b6b;" text="                          ***       " textFill="#feffff">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font>
       </Label>
-      <Label layoutX="357.0" layoutY="649.0" prefHeight="52.0" prefWidth="800.0" style="-fx-background-color: #636b6b;" text="                          **        " textFill="#feffff">
+      <Label layoutX="313.0" layoutY="679.0" prefHeight="52.0" prefWidth="800.0" style="-fx-background-color: #636b6b;" text="                          **        " textFill="#feffff">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font>
       </Label>
-      <Label fx:id="name1" layoutX="364.0" layoutY="225.0" prefHeight="52.0" prefWidth="351.0" text="Jane Doe" textFill="#f3f8f8">
+      <Label fx:id="name1" layoutX="320.0" layoutY="255.0" prefHeight="52.0" prefWidth="351.0" text="Jane Doe" textFill="#f3f8f8">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font>
       </Label>
-      <Label fx:id="name2" layoutX="365.0" layoutY="363.0" prefHeight="52.0" prefWidth="351.0" text="John Doe" textFill="#f3f8f8">
+      <Label fx:id="name2" layoutX="321.0" layoutY="393.0" prefHeight="52.0" prefWidth="351.0" text="John Doe" textFill="#f3f8f8">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font>
       </Label>
-      <Label fx:id="name3" layoutX="365.0" layoutY="510.0" prefHeight="52.0" prefWidth="351.0" text="Jane Doe" textFill="#f3f8f8">
+      <Label fx:id="name3" layoutX="321.0" layoutY="540.0" prefHeight="52.0" prefWidth="351.0" text="Jane Doe" textFill="#f3f8f8">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font>
       </Label>
-      <Label fx:id="name4" layoutX="366.0" layoutY="649.0" prefHeight="52.0" prefWidth="351.0" text="John Doe" textFill="#f3f8f8">
+      <Label fx:id="name4" layoutX="322.0" layoutY="679.0" prefHeight="52.0" prefWidth="351.0" text="John Doe" textFill="#f3f8f8">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font>
       </Label>
-      <Label fx:id="points1" layoutX="903.0" layoutY="225.0" prefHeight="52.0" prefWidth="251.0" text="00:00:00:00" textFill="#f3f8f8">
+      <Label fx:id="points1" layoutX="859.0" layoutY="255.0" prefHeight="52.0" prefWidth="251.0" text="00:00:00:00" textFill="#f3f8f8">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="35.0" />
          </font>
       </Label>
-      <Label fx:id="points2" layoutX="903.0" layoutY="363.0" prefHeight="52.0" prefWidth="251.0" text="00:00:00:00" textFill="#f3f8f8">
+      <Label fx:id="points2" layoutX="859.0" layoutY="393.0" prefHeight="52.0" prefWidth="251.0" text="00:00:00:00" textFill="#f3f8f8">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="35.0" />
          </font>
       </Label>
-      <Label fx:id="points3" layoutX="903.0" layoutY="510.0" prefHeight="52.0" prefWidth="251.0" text="00:00:00:00" textFill="#f3f8f8">
+      <Label fx:id="points3" layoutX="859.0" layoutY="540.0" prefHeight="52.0" prefWidth="251.0" text="00:00:00:00" textFill="#f3f8f8">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="35.0" />
          </font>
       </Label>
-      <Label fx:id="points4" layoutX="903.0" layoutY="649.0" prefHeight="52.0" prefWidth="251.0" text="00:00:00:00" textFill="#f3f8f8">
+      <Label fx:id="points4" layoutX="859.0" layoutY="679.0" prefHeight="52.0" prefWidth="251.0" text="00:00:00:00" textFill="#f3f8f8">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="35.0" />
          </font>
       </Label>
-      <ChoiceBox id="button" fx:id="symbolSelect" layoutX="175.0" layoutY="127.0" prefHeight="31.0" prefWidth="351.0" stylesheets="@../application.css">
+      <ChoiceBox id="button" fx:id="symbolSelect" layoutX="180.0" layoutY="137.0" prefHeight="31.0" prefWidth="351.0" stylesheets="@../application.css">
          <effect>
             <DropShadow />
          </effect></ChoiceBox>
-      <Label layoutX="184.0" layoutY="67.0" prefHeight="41.0" prefWidth="409.0" text="Select a leaderboard to preview:" textFill="#eff5f5">
+      <Label layoutX="189.0" layoutY="77.0" prefHeight="41.0" prefWidth="409.0" text="Select a leaderboard to preview:" textFill="#eff5f5">
          <font>
             <Font name="Comic Sans MS Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="558.0" layoutY="127.0" mnemonicParsing="false" onAction="#newBoard" style="-fx-background-color: white;" text="View">
+      <Button layoutX="563.0" layoutY="137.0" mnemonicParsing="false" onAction="#newBoard" style="-fx-background-color: white;" text="View">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
