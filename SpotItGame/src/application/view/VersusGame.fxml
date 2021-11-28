@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="aiCounter1" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.VersusGameController">
+<AnchorPane fx:id="aiCounter1" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.VersusGameController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3e3778" height="330.0" layoutX="917.0" layoutY="430.0" stroke="#0b0070" strokeType="INSIDE" strokeWidth="10.0" width="275.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3e3778" height="330.0" layoutX="542.0" layoutY="18.0" stroke="#0b0070" strokeType="INSIDE" strokeWidth="10.0" width="275.0" />
@@ -24,7 +24,7 @@
          <children>
             <Circle fill="WHITE" layoutX="175.0" layoutY="175.0" radius="175.0" stroke="BLACK" strokeType="INSIDE" />
          </children></Pane>
-      <Button id="button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToGameStart" stylesheets="@../application.css" text="Back">
+      <Button id="button" fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToGameStart" stylesheets="@../application.css" text="Back">
          <effect>
             <DropShadow />
          </effect></Button>

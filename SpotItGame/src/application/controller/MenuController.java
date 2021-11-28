@@ -3,6 +3,7 @@ package application.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import application.model.dataIO;
 import javafx.event.ActionEvent;
@@ -56,8 +57,19 @@ public class MenuController {
     public void initialize()
     {	
     	//set color of background
-    	String cString = dataIO.readColor();
-    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String t = colors.get(1);
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + t.substring(2, t.length()) +";";
+    	titleLabel.setStyle(tFill);
+    	textPrompt.setStyle(tFill);
+    	backgroundPrompt.setStyle(tFill);
+    	playButton.setStyle(tFill);
+    	leaderboardButton.setStyle(tFill);
+    	createButton.setStyle(tFill);
+    	confirmButton.setStyle(tFill);
     }
     
     @FXML
@@ -66,12 +78,24 @@ public class MenuController {
      * @param event
      */
     void changeColor(ActionEvent event) {
-    	Color color = colorPick.getValue();
-    	String cString = color.toString();
-    	dataIO.writeColor(cString);
+    	Color bColor = colorPick.getValue();
+    	Color tColor = textPick.getValue();
+    	dataIO.writeColor(bColor.toString(), tColor.toString());
+    	
     	//set color of background
-    	cString = dataIO.readColor();
-    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String t = colors.get(1);
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + t.substring(2, t.length()) +";";
+    	titleLabel.setStyle(tFill);
+    	textPrompt.setStyle(tFill);
+    	backgroundPrompt.setStyle(tFill);
+    	playButton.setStyle(tFill);
+    	leaderboardButton.setStyle(tFill);
+    	createButton.setStyle(tFill);
+    	confirmButton.setStyle(tFill);
     }
     
     @FXML

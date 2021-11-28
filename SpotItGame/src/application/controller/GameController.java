@@ -59,6 +59,9 @@ public class GameController {
 
     @FXML
     private Pane leftPane;
+    
+    @FXML
+    private Button backButton;
 
     @FXML
     private AnchorPane mainPane;
@@ -74,8 +77,19 @@ public class GameController {
     public void initialize()
     {	
     	//set color of background
-    	String cString = dataIO.readColor();
-    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String textColor = colors.get(1);
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + textColor.substring(2, textColor.length()) +";";
+    	timer.setStyle(tFill);
+    	submitLabel.setStyle(tFill);
+    	timerPenalty.setStyle(tFill);
+    	cardCounter.setStyle(tFill);
+    	submitButton.setStyle(tFill);
+    	replayButton.setStyle(tFill);
+    	backButton.setStyle(tFill);
     	
     	ArrayList<String> data = dataIO.readGameData();
     	d = new Deck();

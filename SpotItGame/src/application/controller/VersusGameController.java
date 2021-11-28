@@ -31,7 +31,6 @@ import javafx.stage.Stage;
  * Fall 2021
  */
 public class VersusGameController {
-	
 	@FXML
     private Button replayButton;
 	
@@ -69,7 +68,13 @@ public class VersusGameController {
     private Label CardCounter1;
 
     @FXML
+    private AnchorPane aiCounter1;
+    
+    @FXML
     private AnchorPane mainPane;
+    
+    @FXML
+    private Button backButton;
     
     private Deck d;
     private String username;
@@ -82,10 +87,22 @@ public class VersusGameController {
      * Calls the method to initialize and start all player/ai threads
      */
     public void initialize()
-    {	
+    {
     	//set color of background
-    	String cString = dataIO.readColor();
-    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String textColor = colors.get(1);
+    	aiCounter1.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + textColor.substring(2, textColor.length()) +";";
+    	backButton.setStyle(tFill);
+    	replayButton.setStyle(tFill);
+    	winnerText.setStyle(tFill);
+    	pCardCounter.setStyle(tFill);
+    	cardCounter.setStyle(tFill);
+    	CardCounter3.setStyle(tFill);
+    	CardCounter2.setStyle(tFill);
+    	CardCounter1.setStyle(tFill);
     	
     	username = dataIO.readUsername();
     	ArrayList<String> data = dataIO.readGameData();
@@ -95,7 +112,7 @@ public class VersusGameController {
     	d.constructNewDeck(order);
     	d.shuffleDeck();
     	d.adjustDeck(Integer.parseInt(data.get(1))-(order*order+order+1));
-
+    	
     	startGame(order);
     }
     

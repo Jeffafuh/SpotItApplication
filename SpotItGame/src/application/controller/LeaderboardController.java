@@ -26,10 +26,7 @@ public class LeaderboardController {
 	
 	@FXML
 	public void initialize() {
-		//set color of background
-    	String cString = dataIO.readColor();
-    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
-    	
+		
 		board=new Leaderboard();
 		try {
 			board.generateBoard("points.txt");
