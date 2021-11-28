@@ -34,6 +34,11 @@ public class GameTimer implements Runnable{
 
 	    return df.format(d);
     }
+    
+    public long getTime()
+    {
+    	return milisec;
+    }
 
 	@Override
 	public void run() {

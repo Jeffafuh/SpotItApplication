@@ -2,27 +2,48 @@ package application.model;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Class representing a deck of cards for the game Spot It!
+ * Contains a list of symbols used to construct the deck & a list of cards in the deck
+ * 
+ * @author Jeff Dong
+ * Fall 2021
+ */
 public class Deck {
 
-	public ArrayList<Card> cards;
+	private ArrayList<Card> cards;
 	private ArrayList<Symbol> symbols;
 	
+	/**
+	 * Class constructor, initializes both lists to empty lists
+	 */
 	public Deck()
 	{
 		cards = new ArrayList<Card>();
 		symbols = new ArrayList<Symbol>();
 	}
 	
+	/**
+	 * Shuffles the list of cards in the deck into a random order
+	 */
 	public void shuffleDeck()
 	{
 		Collections.shuffle(cards);
 	}
 	
+	/**
+	 * Empties the list of cards in the deck
+	 */
 	public void emptyDeck()
 	{
 		cards.clear();
 	}
 	
+	/**
+	 * Performs a peek function to the list of cards, identical to a stack
+	 * 
+	 * @return First card of the deck
+	 */
 	public Card peek()
 	{
 		if(!isDeckEmpty())
@@ -30,6 +51,11 @@ public class Deck {
 		else return new Card();
 	}
 	
+	/**
+	 * Performs a pop function to the list of cards, identical to a stack
+	 * 
+	 * @return First card of the deck
+	 */
 	public Card pop()
 	{
 		if(!isDeckEmpty())
@@ -37,21 +63,54 @@ public class Deck {
 		else return new Card();
 	}
 	
+	/**
+	 * Adds a card to the front of the deck
+	 * 
+	 * @param c Card to be added to the front
+	 */
 	public void push(Card c)
 	{
 		cards.add(0,c);
 	}
 	
+	/**
+	 * Checks whether or not if the deck is empty
+	 * 
+	 * @return True if the deck is empty, false otherwise
+	 */
 	public boolean isDeckEmpty()
 	{
 		return cards.isEmpty();
 	}
 	
+	/**
+	 * Returns the number of cards in the deck
+	 * 
+	 * @return Size of the cards list
+	 */
 	public int getDeckSize()
 	{
 		return cards.size();
 	}
 	
+	/**
+	 * Returns the number of symbols used for the deck
+	 * 
+	 * @return Size of the symbols list
+	 */
+	public int getSymbolSize()
+	{
+		return symbols.size();
+	}
+	
+	/**
+	 * Adds or removes cards to the deck based on the specified value provided.
+	 * 
+	 * If the number to adjust the deck is positive, copy cards and add them to the deck
+	 * If the number is negative, remove cards from the deck
+	 * 
+	 * @param diff Number of cards to be added/removed from the deck
+	 */
 	public void adjustDeck(int diff)
 	{
 		if(diff < 0)
@@ -97,6 +156,9 @@ public class Deck {
 		}
 	}
 	
+	/**
+	 * Returns a formatted string containing all of the cards in the deck and their symbols
+	 */
 	public String toString()
 	{
 		String output = "";

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+import application.model.dataIO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +34,8 @@ public class LoginController {
     		invalid.setText("Please enter your name");
     	}
     	else {
+    		dataIO.writeUsername(name.getText());
+    		
     		URL url = new File("src/application/view/Menu.fxml").toURI().toURL();
         	mainPane = FXMLLoader.load(url);
             Scene scene = new Scene(mainPane);// pane you are GOING TO show

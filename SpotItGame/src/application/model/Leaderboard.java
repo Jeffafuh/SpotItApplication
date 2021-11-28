@@ -29,7 +29,7 @@ public class Leaderboard {
 	}
 
 	public void generateBoard(String fileName) throws IOException{
-		String fName="data\\"+fileName;
+		String fName="data/"+fileName;
 		int count=0;
 		File f1=new File(fName);
 		Scanner scr=new Scanner(f1);

@@ -43,6 +43,9 @@ public class GameController {
 	
 	@FXML
     private Label timerPenalty;
+	
+	@FXML
+    private Label submitLabel;
 
 	@FXML
     private Pane rightPane;
@@ -205,7 +208,11 @@ public class GameController {
     
     @FXML
     void submitScore(ActionEvent event) {
-
+    	String username = dataIO.readUsername();
+    	ArrayList<String> data = dataIO.readGameData();
+    	dataIO.writeGameScore(Integer.parseInt(data.get(0))+1, username, t.getTime());
+    	submitButton.setOpacity(0);
+    	submitLabel.setText("Score submitted!");
     }
     
     @FXML

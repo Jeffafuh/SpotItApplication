@@ -8,22 +8,22 @@
 
 <AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MenuController">
    <children>
-      <Label layoutX="338.0" layoutY="76.0" text="SPOT IT MENU SCREEN">
+      <Label layoutX="222.0" layoutY="76.0" text="SPOT IT MENU SCREEN" textFill="WHITE">
          <font>
-            <Font name="Bauhaus 93" size="64.0" />
+            <Font name="Comic Sans MS" size="64.0" />
          </font>
       </Label>
-      <Button layoutX="400.0" layoutY="226.0" mnemonicParsing="false" onAction="#switchToCreate" prefHeight="100.0" prefWidth="350.0" text="CREATE">
+      <Button layoutX="425.0" layoutY="212.0" mnemonicParsing="false" onAction="#switchToCreate" prefHeight="100.0" prefWidth="350.0" text="CREATE">
          <font>
             <Font size="64.0" />
          </font>
       </Button>
-      <Button layoutX="425.0" layoutY="425.0" mnemonicParsing="false" onAction="#switchToPlay" prefHeight="93.0" prefWidth="308.0" text="PLAY">
+      <Button layoutX="446.0" layoutY="400.0" mnemonicParsing="false" onAction="#switchToPlay" prefHeight="93.0" prefWidth="308.0" text="PLAY">
          <font>
             <Font size="64.0" />
          </font>
       </Button>
-      <Button layoutX="274.0" layoutY="605.0" mnemonicParsing="false" onAction="#switchLeaderboards" prefHeight="137.0" prefWidth="610.0" text="LEADERBOARDS">
+      <Button layoutX="325.0" layoutY="580.0" mnemonicParsing="false" onAction="#switchLeaderboards" prefHeight="100.0" prefWidth="550.0" text="LEADERBOARDS">
          <font>
             <Font size="64.0" />
          </font>

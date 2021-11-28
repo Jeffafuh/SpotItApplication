@@ -7,12 +7,52 @@ import java.util.Scanner;
 
 public class dataIO {
 	
-	/**
-	 * Given an act number, store the requested act number into the file "actNum.txt" under the data directory
-	 * If the file exists, truncate it, otherwise create the file
-	 * 
-	 * @param n Act number requested to be stored
-	 */
+	public static void writeGameScore(int numSymbols, String username, long miliseconds)
+	{
+		try{
+			String fileName = "data/points" + numSymbols + ".txt";
+			File fileOut = new File(fileName);
+			FileWriter out = new FileWriter(fileOut, true);
+			
+			String outString = username+"-"+miliseconds+"\n";
+
+			out.write(outString);
+			out.close();
+		}
+		catch(Exception e) { e.printStackTrace(); }
+	}
+	
+	public static void writeUsername(String username)
+	{
+		try{
+			String fileName = "data/user.txt";
+			File fileOut = new File(fileName);
+			FileWriter out = new FileWriter(fileOut);
+			
+			String outString = username;
+
+			out.write(outString);
+			out.close();
+		}
+		catch(Exception e) { e.printStackTrace(); }
+	}
+	
+	public static String readUsername()
+	{
+		String username = "";
+		try{
+			Scanner in = new Scanner(new File("data/user.txt"));
+			
+			username = in.nextLine();
+			username.trim();
+			
+			in.close();
+		}
+		catch(Exception e) { e.printStackTrace(); }
+		
+		return username;
+	}
+	
 	public static void writeGameData(int N, int numCards)
 	{
 		try{
@@ -27,11 +67,6 @@ public class dataIO {
 		catch(Exception e) { e.printStackTrace(); }
 	}
 	
-	/**
-	 * Reads the current act number stored in "actNum.txt" in the data directory
-	 * 
-	 * @return The act number requested to be stored prior
-	 */
 	public static ArrayList<String> readGameData()
 	{
 		ArrayList<String> a = new ArrayList<String>();
@@ -65,11 +100,6 @@ public class dataIO {
 		catch(Exception e) { e.printStackTrace(); }
 	}
 	
-	/**
-	 * Reads the current act number stored in "actNum.txt" in the data directory
-	 * 
-	 * @return The act number requested to be stored prior
-	 */
 	public static ArrayList<String> readDeckViewData()
 	{
 		ArrayList<String> a = new ArrayList<String>();
