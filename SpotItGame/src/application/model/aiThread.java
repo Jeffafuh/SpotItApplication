@@ -12,8 +12,27 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+/**
+ * Main thread for the ai used in the versus mode
+ * 
+ * @author Jeff Dong
+ * Fall 2021
+ */
 public class aiThread extends gameThread{
 	
+	/**
+	 * Class constructor, initializes all fields and updates the cards/counters
+	 * Calculates the minimum player symbol size
+	 * 
+	 * @param username Username of the player
+	 * @param order Order of the FPP of the deck
+	 * @param d Deck shared by everyone
+	 * @param playerDeck Deck used by the player
+	 * @param deckPane Pane for the main Deck
+	 * @param playerPane Pane for the player
+	 * @param cardCounter Card counter for the main deck
+	 * @param pCardCounter Card counter for the player
+	 */
 	public aiThread(String username, int order, Deck d, Deck playerDeck, Pane deckPane, Pane playerPane, Label cardCounter, Label pCardCounter) {
 		super(username, order, d, playerDeck, deckPane, playerPane, cardCounter, pCardCounter);
 		
@@ -22,6 +41,14 @@ public class aiThread extends gameThread{
 		updateCounters();
 	}
 	
+	/**
+	 * Main thread logic
+	 * Continues until the deck is empty
+	 * 
+	 * Waits a random number of seconds (2 - 8 seconds), chooses a symbol at random, highlights it, and see if it's a match
+	 * If it matches, adjust the ai deck and main deck accordingly
+	 * Continue until the main deck is empty
+	 */
 	@Override
 	protected Integer call() throws Exception {
 
@@ -62,6 +89,9 @@ public class aiThread extends gameThread{
 		return getPlayerDeck().getDeckSize();
 	}
 	
+	/**
+	 * Displays a single card onto the pane specified
+	 */
 	public void displayCard(Card c, Pane p, boolean isPlayer)
     {
     	p.getChildren().clear();

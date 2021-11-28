@@ -9,7 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
-
+/**
+ * Java class containing the main method to run the program and display the application.
+ * 
+ * @author Jeff Dong, Bhavya Gokana, Anaya Hartfield, Joy Kiprotich, Vamshi Ponnala
+ * UTSA CS 3443 - Final Group Project
+ * Fall 2021
+ */
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {

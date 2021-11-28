@@ -23,6 +23,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Main controller for VersusGame.fxml
+ * Handles the logic for running the versus player mode
+ * 
+ * @author Jeff Dong
+ * Fall 2021
+ */
 public class VersusGameController {
 	
 	@FXML
@@ -70,6 +77,10 @@ public class VersusGameController {
     private playerThread player;
     private int joinCnt;
 
+    /**
+     * Reads in the game settings and creates the deck accordingly
+     * Calls the method to initialize and start all player/ai threads
+     */
     public void initialize()
     {	
     	username = dataIO.readUsername();
@@ -84,6 +95,11 @@ public class VersusGameController {
     	startGame(order);
     }
     
+    /**
+     * Assigns random names to the ai's and creates/starts all threads required for the game
+     * 
+     * @param order Order of the deck used
+     */
     public void startGame(int order)
     {
     	String[] names = {"Jeff", "Bhavya", "Anaya", "Joy", "Vamshi"};
@@ -136,6 +152,12 @@ public class VersusGameController {
     	joinCnt = 0;
     }
     
+    /**
+     * Waits from a response from all four threads before commencing the final tally of the winner
+     * 
+     * If all four threads have not finished, display a waiting message
+     * Otherwise, find the winner and display their name/info
+     */
     public void gameEnd(WorkerStateEvent e)
     {
     	joinCnt++;
@@ -176,6 +198,12 @@ public class VersusGameController {
     	}
     }
     
+    /**
+     * Given a list of gameThreads, find out which one(s) have the biggest deck size and return them
+     * 
+     * @param a List of all gameThreads to be considered
+     * @return gameThreads with the highest number of cards in their decks
+     */
     public ArrayList<gameThread> findMaxThread(gameThread... a)
     {
     	ArrayList<gameThread> max = new ArrayList<gameThread>();
@@ -197,6 +225,9 @@ public class VersusGameController {
     	return max;
     }
     
+    /**
+     * Reloads the .fxml file to start a new game given the same settings
+     */
     @FXML
     void resetGame(ActionEvent event) throws IOException{
     	URL url = new File("src/application/view/VersusGame.fxml").toURI().toURL();
@@ -209,6 +240,9 @@ public class VersusGameController {
         window.show();
     }
     
+    /**
+     * Switches the screen back to the game config menu
+     */
     @FXML
     void switchToGameStart(ActionEvent event) throws IOException{
     	d.emptyDeck();
@@ -222,7 +256,6 @@ public class VersusGameController {
         window.setScene(scene);
         window.show();
     }
-    
     
 }
 

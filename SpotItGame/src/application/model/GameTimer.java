@@ -7,12 +7,26 @@ import java.util.TimeZone;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
+/**
+ * Main thread for the timer in the single player mode
+ * Stores time in miliseconds
+ * 
+ * @author Jeff Dong
+ * Fall 2021
+ */
 public class GameTimer implements Runnable{
 	
     private Label timer, penalty;
     private Deck d;
     private long milisec;
     
+    /**
+     * Class constructor, initializes all fields
+     * 
+     * @param penalty Label used to display the penalty for wrong clicks
+     * @param t Label used to display the time
+     * @param d Main deck used in the game
+     */
     public GameTimer(Label penalty, Label t, Deck d)
     {
     	milisec = 0;
@@ -21,11 +35,22 @@ public class GameTimer implements Runnable{
     	this.penalty = penalty;
     }
     
+    /**
+     * Adds a specified number of seconds to the timer
+     * 
+     * @param seconds Number of seconds to be added
+     */
     public void addTime(int seconds)
     {
     	milisec += seconds*1000;
     }
     
+    /**
+     * Given a time in miliseconds, return a formatted string containing how much time as elapsed.
+     * Formatted as Hours:Minutes:Seconds:Miliseconds
+     * 
+     * @return Formatted time string
+     */
     public String getFormattedTime()
     {
     	Date d = new Date(milisec);
@@ -35,11 +60,21 @@ public class GameTimer implements Runnable{
 	    return df.format(d);
     }
     
+    /**
+     * Returns the raw value of the time in miliseconds
+     * 
+     * @return Time elapsed by the timer
+     */
     public long getTime()
     {
     	return milisec;
     }
 
+    /**
+     * Main thread logic
+     * Continues to run while the deck is not empty, adds time one milisecond at a time
+     * Also manages the fade/display of the penalty label
+     */
 	@Override
 	public void run() {
 		try {

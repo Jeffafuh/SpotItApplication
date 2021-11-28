@@ -27,6 +27,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+/**
+ * Main controller for Game.fxml
+ * Handles the logic for running the single player mode
+ * 
+ * @author Jeff Dong
+ * Fall 2021
+ */
 public class GameController {
 	
 	@FXML
@@ -60,6 +67,10 @@ public class GameController {
     private GameTimer t;
     private int minSize;
 
+    /**
+     * Reads in the game settings and creates the deck accordingly
+     * Displays both initial cards and starts the timer thread
+     */
     public void initialize()
     {	
     	ArrayList<String> data = dataIO.readGameData();
@@ -79,6 +90,14 @@ public class GameController {
     	thread.start();
     }
     
+    /**
+	 * When the user clicks on an image, check and see if that symbol matches one on the deck pane
+	 * 
+	 * If it matches, adjust the decks accordingly.
+	 * Otherwise, add a penalty of 5 seconds to the timer
+	 * 
+	 * @param e Image clicked
+	 */
     public void check(MouseEvent e)
     {
     	ImageView n = (ImageView)e.getTarget();
@@ -117,6 +136,9 @@ public class GameController {
     	}
     }
     
+    /**
+     * Clears all cards and display the replay & submit buttons
+     */
     public void gameEnd()
     {
     	replayButton.setOpacity(1);
@@ -125,6 +147,13 @@ public class GameController {
     	displayCard(new Card(), rightPane);
     }
     
+    /**
+	 * Given a path to an image, check if that matches a symbol on the pane specified
+	 * 
+	 * @param path File path to the Symbol's image
+	 * @param p Pane to be checked against
+	 * @return Whether or not the symbol matches
+	 */
     public boolean checkMatch(String path, Pane p)
     {
     	boolean match = false;
@@ -144,6 +173,9 @@ public class GameController {
     	return match;
     }
     
+    /**
+	 * Displays a single card onto the pane specified
+	 */
     public void displayCard(Card c, Pane p)
     {
     	p.getChildren().clear();
@@ -196,6 +228,12 @@ public class GameController {
     	p.getChildren().add(0, circle);
     }
     
+    /**
+	 * Generates a random point inside a circle with radius r
+	 * 
+	 * @param r Radius of the circle
+	 * @return Double array containing the point inside the circle
+	 */
     public double[] randPoint()
     {
     	double[] point = new double[2];
@@ -206,6 +244,10 @@ public class GameController {
     	return point;
     }
     
+    /**
+     * Submits the username and time of the user after completing a game
+     * Displays a message indicating that the score has been submitted
+     */
     @FXML
     void submitScore(ActionEvent event) {
     	String username = dataIO.readUsername();
@@ -215,6 +257,9 @@ public class GameController {
     	submitLabel.setText("Score submitted!");
     }
     
+    /**
+     * Reloads the .fxml file to start a new game given the same settings
+     */
     @FXML
     void resetGame(ActionEvent event) throws IOException{
     	URL url = new File("src/application/view/Game.fxml").toURI().toURL();
@@ -227,6 +272,9 @@ public class GameController {
         window.show();
     }
     
+    /**
+     * Switches the screen back to the game config menu
+     */
     @FXML
     void switchToGameStart(ActionEvent event) throws IOException{
     	d.emptyDeck();
@@ -240,19 +288,5 @@ public class GameController {
         window.setScene(scene);
         window.show();
     }
-    
-    @FXML
-    void switchToCreate(ActionEvent event) throws IOException{
-    	URL url = new File("src/application/view/CreateDeck.fxml").toURI().toURL();
-    	mainPane = FXMLLoader.load(url);
-        Scene scene = new Scene(mainPane);// pane you are GOING TO show
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
-        scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
-    	
-        window.setScene(scene);
-        window.show();
-    }
-    
-    
 }
 
