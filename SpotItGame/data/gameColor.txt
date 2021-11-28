@@ -1,0 +1,5 @@
+<<<<<<< Updated upstream
+RED
+=======
+PURPLE
+>>>>>>> Stashed changes
