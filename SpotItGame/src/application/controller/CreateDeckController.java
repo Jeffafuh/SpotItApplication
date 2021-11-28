@@ -74,6 +74,7 @@ public class CreateDeckController {
     	return a;
     }
 
+    //Comments = TODO
     @FXML
     void generateDeck(ActionEvent event) throws IOException {
 		int N = getNumSymbols()-1;
@@ -81,9 +82,12 @@ public class CreateDeckController {
 		Deck d = new Deck();
 		d.constructNewDeck(N);
 		Pane p = new Pane();
-		p.setPrefSize(1000, 1000);
 		
+		//TODO: set the pref size big enough to fix all the cards ( 175 x 175 size )
+		p.setPrefSize(1000, 1000);
 		displayPane.setContent(p);
+		
+		//TODO: set up system to place cards in a grid using translate x/y
 		int i = 0;
 		while(!d.isDeckEmpty())
 		{
