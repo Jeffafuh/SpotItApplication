@@ -31,7 +31,7 @@ public class LoginController {
     void login(ActionEvent event) throws IOException {
     	
     	if(name.getText().equals("")) {
-    		invalid.setText("Please enter your name");
+    		invalid.setOpacity(1);
     	}
     	else {
     		dataIO.writeUsername(name.getText());
