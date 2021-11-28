@@ -65,5 +65,6 @@
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font></Button>
+      <ColorPicker editable="true" layoutX="66.0" layoutY="211.0" promptText="Select a color..." />
    </children>
 </AnchorPane>
