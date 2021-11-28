@@ -26,7 +26,7 @@
             <DropShadow />
          </effect>
       </Button>
-      <Text fill="WHITE" layoutX="280.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate Emoji-Based Cards!" wrappingWidth="573.21630859375">
+      <Text fill="WHITE" layoutX="286.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate Mario-Based Cards!" wrappingWidth="585.21630859375">
          <font>
             <Font name="Comic Sans MS Bold" size="40.0" />
          </font>
