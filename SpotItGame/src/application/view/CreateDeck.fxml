@@ -14,7 +14,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="symbolSelect" layoutX="375.0" layoutY="160.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: white;">
+      <ChoiceBox fx:id="symbolSelect" layoutX="362.0" layoutY="160.0" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: white;">
          <effect>
             <DropShadow />
          </effect></ChoiceBox>
