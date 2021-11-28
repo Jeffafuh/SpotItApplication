@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import application.model.Card;
 import application.model.Deck;
 import application.model.Symbol;
-import application.model.dataIO;
 import application.model.loadedImage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -27,6 +25,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+/**
+ * Main controller for CreateDeck.fxml
+ * Handles the logic for displaying all the cards in a deck
+ * 
+ * @author Anaya Hartfield
+ * Fall 2021
+ */
 public class CreateDeckController {
 	
 	@FXML
@@ -52,7 +57,9 @@ public class CreateDeckController {
     
     private double minSize;
     
-    
+    /**
+     * Adds all options to the selection menu, selects the first option by default
+     */
     @FXML
     public void initialize()
     {
@@ -67,6 +74,11 @@ public class CreateDeckController {
     	symbolSelect.getSelectionModel().select(0);
     }
     
+    /**
+     * Gets the number of symbols requested by the selection menu
+     * 
+     * @return Number of symbols on the symbol select
+     */
     public int getNumSymbols()
     {
     	String s = symbolSelect.getValue();
@@ -74,7 +86,10 @@ public class CreateDeckController {
     	return a;
     }
 
-    //Comments = TODO
+    /**
+     * Generates a deck of cards according to the requested parameters and generates a 3xN grid of the deck displaying every card
+     * Puts the final pane onto the scroll pane
+     */
     @FXML
     void generateDeck(ActionEvent event) throws IOException {
 		int N = getNumSymbols()-1;
@@ -83,23 +98,25 @@ public class CreateDeckController {
 		d.constructNewDeck(N);
 		Pane p = new Pane();
 		
-		//TODO: set the pref size big enough to fix all the cards ( 175 x 175 size )
-		p.setPrefSize(1000, 1000);
+		p.setPrefSize(1050, (d.getDeckSize()+1)/3 * 350);
 		displayPane.setContent(p);
 		
-		//TODO: set up system to place cards in a grid using translate x/y
-		int i = 0;
+		int i = 0, j = 0;
 		while(!d.isDeckEmpty())
 		{
 			Pane toAdd = new Pane();
 			displayCard(d.pop(), toAdd);
-			toAdd.setTranslateX(100*i);
-			toAdd.setTranslateY(100*i);
+			toAdd.setTranslateX(350*i);
+			toAdd.setTranslateY(350*(j/3));
 			p.getChildren().add(toAdd);
-			i++;
+			i = (i+1)%3;
+			j++;
 		}
     }
     
+    /**
+	 * Displays a single card onto the pane specified
+	 */
     public void displayCard(Card c, Pane p)
     {
     	Circle circle = new Circle(175);
@@ -150,6 +167,12 @@ public class CreateDeckController {
     	p.getChildren().add(0, circle);
     }
     
+    /**
+	 * Generates a random point inside a circle with radius r
+	 * 
+	 * @param r Radius of the circle
+	 * @return Double array containing the point inside the circle
+	 */
     public double[] randPoint(double r)
     {
     	double[] point = new double[2];
@@ -160,6 +183,9 @@ public class CreateDeckController {
     	return point;
     }
     
+    /**
+     * Switches the scene back to the main menu
+     */
     @FXML
     void switchToMenu(ActionEvent event) throws IOException {
     	URL url = new File("src/application/view/Menu.fxml").toURI().toURL();
