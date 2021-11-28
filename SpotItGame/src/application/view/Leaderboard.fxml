@@ -14,9 +14,9 @@
          <font>
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font></Label>
-      <Label layoutX="14.0" layoutY="25.0" text="SPOT IT!" textFill="#eff5f5">
+      <Label layoutX="18.0" layoutY="14.0" prefHeight="89.0" prefWidth="323.0" text="SPOT IT!" textFill="#eff5f5">
          <font>
-            <Font name="Comic Sans MS Bold" size="96.0" />
+            <Font name="Comic Sans MS Bold" size="64.0" />
          </font>
       </Label>
       <ImageView fitHeight="62.0" fitWidth="70.0" layoutX="131.0" layoutY="220.0">
@@ -119,5 +119,9 @@
             <Font name="Comic Sans MS Bold Italic" size="37.0" />
          </font>
       </Label>
+      <ChoiceBox id="button" layoutX="363.0" layoutY="55.0" prefHeight="50.0" prefWidth="400.0">
+         <effect>
+            <DropShadow />
+         </effect></ChoiceBox>
    </children>
 </AnchorPane>
