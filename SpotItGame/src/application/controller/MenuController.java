@@ -41,7 +41,6 @@ public class MenuController {
     	colorSelect.getItems().add("GREEN");
     	colorSelect.getItems().add("BLUE");
     	colorSelect.getItems().add("PURPLE");
-    	colorSelect.getSelectionModel().select(0);
     	
     	//set color check
     	String setColor = dataIO.readColor();
