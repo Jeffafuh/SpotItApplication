@@ -12,7 +12,7 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3e3778" height="173.0" layoutX="694.0" layoutY="152.0" stroke="#0b0070" strokeType="INSIDE" strokeWidth="10.0" width="469.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#795837" height="384.0" layoutX="39.0" layoutY="121.0" stroke="#722c00" strokeType="INSIDE" strokeWidth="10.0" width="598.0" />
-      <Button fx:id="startButton" layoutX="488.0" layoutY="551.0" mnemonicParsing="false" onAction="#startGame" prefHeight="122.0" prefWidth="298.0" style="-fx-background-color: white;" text="Play!">
+      <Button fx:id="startButton" layoutX="488.0" layoutY="577.0" mnemonicParsing="false" onAction="#startGame" prefHeight="122.0" prefWidth="298.0" style="-fx-background-color: white;" text="Play!">
          <effect>
             <DropShadow />
          </effect>
@@ -35,7 +35,7 @@
          <font>
             <Font name="Comic Sans MS" size="30.0" />
          </font></Label>
-      <Label fx:id="errorText" alignment="CENTER" layoutX="470.0" layoutY="675.0" prefHeight="106.0" prefWidth="334.0" textAlignment="CENTER" textFill="RED" wrapText="true">
+      <Label fx:id="errorText" alignment="CENTER" layoutX="739.0" layoutY="373.0" opacity="0.0" prefHeight="104.0" prefWidth="372.0" style="-fx-background-color: red;" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Comic Sans MS" size="30.0" />
          </font></Label>
