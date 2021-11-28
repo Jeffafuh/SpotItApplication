@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import application.model.Card;
 import application.model.Deck;
 import application.model.Symbol;
-import application.model.dataIO;
 import application.model.loadedImage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -74,7 +72,6 @@ public class CreateDeckController {
     	return a;
     }
 
-    //Comments = TODO
     @FXML
     void generateDeck(ActionEvent event) throws IOException {
 		int N = getNumSymbols()-1;
@@ -83,20 +80,19 @@ public class CreateDeckController {
 		d.constructNewDeck(N);
 		Pane p = new Pane();
 		
-		//TODO: set the pref size big enough to fix all the cards ( 175 x 175 size )
-		p.setPrefSize(1000, 1000);
+		p.setPrefSize(1050, (d.getDeckSize()+1)/3 * 350);
 		displayPane.setContent(p);
 		
-		//TODO: set up system to place cards in a grid using translate x/y
-		int i = 0;
+		int i = 0, j = 0;
 		while(!d.isDeckEmpty())
 		{
 			Pane toAdd = new Pane();
 			displayCard(d.pop(), toAdd);
-			toAdd.setTranslateX(100*i);
-			toAdd.setTranslateY(100*i);
+			toAdd.setTranslateX(350*i);
+			toAdd.setTranslateY(350*(j/3));
 			p.getChildren().add(toAdd);
-			i++;
+			i = (i+1)%3;
+			j++;
 		}
     }
     
