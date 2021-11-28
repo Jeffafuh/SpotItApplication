@@ -41,15 +41,6 @@ public class CreateDeckController {
     private Button generateButton;
     
     @FXML
-    private Label errorText;
-    
-    @FXML
-    private Label ImagesPerCard;
-    
-    @FXML
-    private Label VisualStyle;
-    
-    @FXML
     private ChoiceBox<String> symbolSelect;
     
     @FXML
