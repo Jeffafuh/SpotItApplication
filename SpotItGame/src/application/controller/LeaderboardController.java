@@ -4,15 +4,20 @@ import java.io.IOException;
 
 import java.util.*;
 import application.model.Leaderboard;
+import application.model.dataIO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LeaderboardController {
+	@FXML
+    private AnchorPane mainPane;
+	
 	@FXML
 	private Label name1,name2,name3,name4;
 	@FXML
@@ -21,6 +26,10 @@ public class LeaderboardController {
 	
 	@FXML
 	public void initialize() {
+		//set color of background
+    	String cString = dataIO.readColor();
+    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
+    	
 		board=new Leaderboard();
 		try {
 			board.generateBoard("points.txt");

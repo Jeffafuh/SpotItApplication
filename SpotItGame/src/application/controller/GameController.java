@@ -66,13 +66,17 @@ public class GameController {
     private Deck d;
     private GameTimer t;
     private int minSize;
-
+    
     /**
      * Reads in the game settings and creates the deck accordingly
      * Displays both initial cards and starts the timer thread
      */
     public void initialize()
     {	
+    	//set color of background
+    	String cString = dataIO.readColor();
+    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
+    	
     	ArrayList<String> data = dataIO.readGameData();
     	d = new Deck();
     	int order = Integer.parseInt(data.get(0));

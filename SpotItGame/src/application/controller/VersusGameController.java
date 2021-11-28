@@ -83,6 +83,10 @@ public class VersusGameController {
      */
     public void initialize()
     {	
+    	//set color of background
+    	String cString = dataIO.readColor();
+    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
+    	
     	username = dataIO.readUsername();
     	ArrayList<String> data = dataIO.readGameData();
     	d = new Deck();

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import application.model.Card;
 import application.model.Deck;
 import application.model.Symbol;
+import application.model.dataIO;
 import application.model.loadedImage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,6 +64,10 @@ public class CreateDeckController {
     @FXML
     public void initialize()
     {
+    	//set color of background
+    	String cString = dataIO.readColor();
+    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
+    	
     	symbolSelect.getItems().add("2 (Default 3 Cards)");
     	symbolSelect.getItems().add("3 (Default 7 Cards)");
     	symbolSelect.getItems().add("4 (Default 13 Cards)");

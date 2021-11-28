@@ -11,40 +11,53 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MenuController {
 	//instantiate action objects
 	@FXML
-	private AnchorPane mainPane;
-	
-	@FXML
-    private Button switchTheme;
+    private AnchorPane mainPane;
 
     @FXML
-    private ChoiceBox<String> colorSelect;
-    
+    private Label titleLabel;
+
+    @FXML
+    private Button createButton;
+
+    @FXML
+    private Button playButton;
+
+    @FXML
+    private Button leaderboardButton;
+
+    @FXML
+    private Label backgroundPrompt;
+
     @FXML
     private Button confirmButton;
+
+    @FXML
+    private ColorPicker colorPick;
+
+    @FXML
+    private ColorPicker textPick;
+
+    @FXML
+    private Label textPrompt;
     
     @FXML
     /**
      * initializes the color selection dropdown menu
      */
     public void initialize()
-    {
-    	colorSelect.getItems().add("RED");
-    	colorSelect.getItems().add("ORANGE");
-    	colorSelect.getItems().add("YELLOW");
-    	colorSelect.getItems().add("GREEN");
-    	colorSelect.getItems().add("BLUE");
-    	colorSelect.getItems().add("PURPLE");
-    	
-    	//set color check
-    	String setColor = dataIO.readColor();
-    	mainPane.styleProperty().set("-fx-background-color: " + setColor + ";");
+    {	
+    	//set color of background
+    	String cString = dataIO.readColor();
+    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
     }
     
     @FXML
@@ -53,11 +66,12 @@ public class MenuController {
      * @param event
      */
     void changeColor(ActionEvent event) {
-    	String color = colorSelect.getValue();
-    	dataIO.writeColor(color);
-    	
-    	String setColor = dataIO.readColor();
-    	mainPane.styleProperty().set("-fx-background-color: " + setColor + ";");
+    	Color color = colorPick.getValue();
+    	String cString = color.toString();
+    	dataIO.writeColor(cString);
+    	//set color of background
+    	cString = dataIO.readColor();
+    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
     }
     
     @FXML

@@ -62,6 +62,10 @@ public class GameStartController {
     	symbolSelect.getItems().add("9 (Default 73 Cards)");
     	symbolSelect.getItems().add("10 (Default 91 Cards)");
     	symbolSelect.getSelectionModel().select(0);
+    	
+    	//set color of background
+    	String cString = dataIO.readColor();
+    	mainPane.styleProperty().setValue("-fx-background: #"+ cString.substring(2, cString.length()) +";");
     }
     
     /**
