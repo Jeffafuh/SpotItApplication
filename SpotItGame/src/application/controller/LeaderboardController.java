@@ -15,6 +15,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * Main controller for Leaderboard.fxml
+ * Handles the logic for displaying the leaderboard
+ * 
+ * @author Joy Kiprotich
+ * Fall 2021
+ */
 public class LeaderboardController {
 	@FXML
 	private Label name1,name2,name3,name4;
@@ -26,6 +33,10 @@ public class LeaderboardController {
 	private AnchorPane mainPane;
 	private Leaderboard board;
 	
+	/**
+     * Adds all options to the selection menu, selects the first option by default
+     * Generates a new leaderboard on startup
+     */
 	@FXML
 	public void initialize() {
 		symbolSelect.getItems().add("2 Symbols");
@@ -41,6 +52,11 @@ public class LeaderboardController {
     	newBoard();
 	}
 	
+	/**
+     * Gets the number of symbols requested by the selection menu
+     * 
+     * @return Number of symbols on the symbol select
+     */
 	public String getNumSymbols()
     {
     	String s = symbolSelect.getValue();
@@ -48,6 +64,9 @@ public class LeaderboardController {
     	return newS;
     }
 	
+	/**
+	 * Generates a new leaderboard based on the number of symbols selected
+	 */
 	@FXML
 	public void newBoard() {
 		board=new Leaderboard();
@@ -114,6 +133,9 @@ public class LeaderboardController {
 		}
 	}
 	
+	/**
+     * Switches the scene to the main menu
+     */
 	@FXML
     void switchToMenu(ActionEvent event) throws IOException{
     	URL url = new File("src/application/view/Menu.fxml").toURI().toURL();

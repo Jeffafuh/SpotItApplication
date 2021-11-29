@@ -15,6 +15,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * Main controller for Menu.fxml
+ * Handles the logic for the main menu screen
+ * 
+ * @author Jeff Dong
+ * Fall 2021
+ */
 public class MenuController {
 	//instantiate action objects
 	@FXML
