@@ -3,6 +3,7 @@ package application.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import application.model.dataIO;
 import javafx.event.ActionEvent;
@@ -11,8 +12,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -25,33 +28,55 @@ import javafx.stage.Stage;
 public class MenuController {
 	//instantiate action objects
 	@FXML
-	private AnchorPane mainPane;
-	
-	@FXML
-    private Button switchTheme;
+    private AnchorPane mainPane;
 
     @FXML
-    private ChoiceBox<String> colorSelect;
-    
+    private Label titleLabel;
+
+    @FXML
+    private Button createButton;
+
+    @FXML
+    private Button playButton;
+
+    @FXML
+    private Button leaderboardButton;
+
+    @FXML
+    private Label backgroundPrompt;
+
     @FXML
     private Button confirmButton;
+
+    @FXML
+    private ColorPicker colorPick;
+
+    @FXML
+    private ColorPicker textPick;
+
+    @FXML
+    private Label textPrompt;
     
     @FXML
     /**
      * initializes the color selection dropdown menu
      */
     public void initialize()
-    {
-    	colorSelect.getItems().add("RED");
-    	colorSelect.getItems().add("ORANGE");
-    	colorSelect.getItems().add("YELLOW");
-    	colorSelect.getItems().add("GREEN");
-    	colorSelect.getItems().add("BLUE");
-    	colorSelect.getItems().add("PURPLE");
-    	
-    	//set color check
-    	String setColor = dataIO.readColor();
-    	mainPane.styleProperty().set("-fx-background-color: " + setColor + ";");
+    {	
+    	//set color of background
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String t = colors.get(1);
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + t.substring(2, t.length()) +";";
+    	titleLabel.setStyle(tFill);
+    	textPrompt.setStyle(tFill);
+    	backgroundPrompt.setStyle(tFill);
+    	playButton.setStyle(tFill);
+    	leaderboardButton.setStyle(tFill);
+    	createButton.setStyle(tFill);
+    	confirmButton.setStyle(tFill);
     }
     
     @FXML
@@ -60,11 +85,24 @@ public class MenuController {
      * @param event
      */
     void changeColor(ActionEvent event) {
-    	String color = colorSelect.getValue();
-    	dataIO.writeColor(color);
+    	Color bColor = colorPick.getValue();
+    	Color tColor = textPick.getValue();
+    	dataIO.writeColor(bColor.toString(), tColor.toString());
     	
-    	String setColor = dataIO.readColor();
-    	mainPane.styleProperty().set("-fx-background-color: " + setColor + ";");
+    	//set color of background
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String t = colors.get(1);
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + t.substring(2, t.length()) +";";
+    	titleLabel.setStyle(tFill);
+    	textPrompt.setStyle(tFill);
+    	backgroundPrompt.setStyle(tFill);
+    	playButton.setStyle(tFill);
+    	leaderboardButton.setStyle(tFill);
+    	createButton.setStyle(tFill);
+    	confirmButton.setStyle(tFill);
     }
     
     @FXML

@@ -6,6 +6,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import application.model.Leaderboard;
+import application.model.dataIO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,9 @@ import javafx.stage.Stage;
  */
 public class LeaderboardController {
 	@FXML
+    private AnchorPane mainPane;
+	
+	@FXML
 	private Label name1,name2,name3,name4;
 	@FXML
 	private Label points1,points2,points3,points4;
@@ -39,7 +43,7 @@ public class LeaderboardController {
      */
 	@FXML
 	public void initialize() {
-		symbolSelect.getItems().add("2 Symbols");
+		  symbolSelect.getItems().add("2 Symbols");
     	symbolSelect.getItems().add("3 Symbols");
     	symbolSelect.getItems().add("4 Symbols");
     	symbolSelect.getItems().add("5 Symbols");

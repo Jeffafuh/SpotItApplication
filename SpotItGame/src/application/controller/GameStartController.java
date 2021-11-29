@@ -3,6 +3,7 @@ package application.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import application.model.dataIO;
 import javafx.event.ActionEvent;
@@ -45,6 +46,27 @@ public class GameStartController {
     @FXML
     private AnchorPane mainPane;
     
+    @FXML
+    private Label symbolsPrompt;
+
+    @FXML
+    private Label cardPrompt;
+    
+    @FXML
+    private Label modeTitle;
+
+    @FXML
+    private Label burndownSelect;
+
+    @FXML
+    private Label classicSelect;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private Label defaultPrompt;
+    
     //thread for counter
     
     /**
@@ -62,6 +84,26 @@ public class GameStartController {
     	symbolSelect.getItems().add("9 (Default 73 Cards)");
     	symbolSelect.getItems().add("10 (Default 91 Cards)");
     	symbolSelect.getSelectionModel().select(0);
+    	
+    	//set color of background
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String t = colors.get(1);
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + t.substring(2, t.length()) +";";
+    	errorText.setStyle(tFill);
+    	startButton.setStyle(tFill);
+    	numCards.setStyle(tFill);
+    	modeTitle.setStyle(tFill);;
+    	burndownSelect.setStyle(tFill);;
+    	symbolsPrompt.setStyle(tFill);
+    	cardPrompt.setStyle(tFill);
+    	classicSelect.setStyle(tFill);;
+    	backButton.setStyle(tFill);;
+    	defaultPrompt.setStyle(tFill);;
+    	
+    	
     }
     
     /**

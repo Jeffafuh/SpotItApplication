@@ -128,13 +128,13 @@ public class dataIO {
 	 * writes the selected color to the file
 	 * @param selectedColor
 	 */
-	public static void writeColor(String selectedColor)
+	public static void writeColor(String b, String t)
 	{
 		try{
 			File fileOut = new File("data/gameColor.txt");
 			FileWriter out = new FileWriter(fileOut);
 
-			out.write(selectedColor);
+			out.write(b + " " + t);
 			out.close();
 		}
 		catch(Exception e) { e.printStackTrace(); }
@@ -144,23 +144,30 @@ public class dataIO {
 	 * reads the color from the color file and returns a string
 	 * @return
 	 */
-	public static String readColor()
+	public static ArrayList<String> readColor()
 	{
-		String s = "";
-		
+		ArrayList<String> colors = new ArrayList<String>();
 		try{
-			Scanner in = new Scanner(new File("data/gameColor.txt"));
+			File file = new File("data/gameColor.txt");
+			Scanner in = new Scanner(file);
 			
-			String line = in.nextLine();
-			String[] data = line.split(" ");
-			for(String c: data)
-				s+=c;
+			if(file.length() == 0) {
+				colors.add("0xffffffff");
+				colors.add("0x000000");
+			}
+			else {
+				String line = in.nextLine();
+				String[] data = line.split(" ");
+				for(String c: data) {
+					colors.add(c);
+				}
+			}
 			
 			in.close();
 		}
 		catch(Exception e) { e.printStackTrace(); }
 		
-		return s;
+		return colors;
 	}
 	
 }

@@ -59,6 +59,9 @@ public class GameController {
 
     @FXML
     private Pane leftPane;
+    
+    @FXML
+    private Button backButton;
 
     @FXML
     private AnchorPane mainPane;
@@ -66,13 +69,28 @@ public class GameController {
     private Deck d;
     private GameTimer t;
     private int minSize;
-
+    
     /**
      * Reads in the game settings and creates the deck accordingly
      * Displays both initial cards and starts the timer thread
      */
     public void initialize()
     {	
+    	//set color of background
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String textColor = colors.get(1);
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + textColor.substring(2, textColor.length()) +";";
+    	timer.setStyle(tFill);
+    	submitLabel.setStyle(tFill);
+    	timerPenalty.setStyle(tFill);
+    	cardCounter.setStyle(tFill);
+    	submitButton.setStyle(tFill);
+    	replayButton.setStyle(tFill);
+    	backButton.setStyle(tFill);
+    	
     	ArrayList<String> data = dataIO.readGameData();
     	d = new Deck();
     	int order = Integer.parseInt(data.get(0));
