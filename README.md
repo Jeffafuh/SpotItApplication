@@ -13,7 +13,7 @@ Group Members:
 
 As the title suggests, this application implements a functioning version of the card game, *Spot It!* (or more commonly known as [*Dobble*](https://www.dobblegame.com/en/games/) in Europe). In addition to playing the game, this application also supports deck creation and a leaderboard.
 
-*Spot It!* is a card game with a deck that contains a myriad of symbols on each card such that each any two cards has one, and only one, symbol in common. To generate a *Spot It!* deck with *n* symbols on each card, a finite projective plane of order *n-1* must be constructed. More information on the mathematics for how *Spot It!* decks are generated (and initial inspiration for this project) can be found [here](https://www.youtube.com/watch?v=VTDKqW_GLkw).
+*Spot It!* is a card game with a deck that contains a myriad of symbols on each card such that each any two cards has one, and only one, symbol in common. To generate a *Spot It!* deck with *n* symbols on each card, this application generates a finite projective plane of order *n-1* to create the deck. More information on the mathematics for how *Spot It!* decks are generated (and initial inspiration for this project) can be found [here](https://www.youtube.com/watch?v=VTDKqW_GLkw).
 
 ## The Menu
 
