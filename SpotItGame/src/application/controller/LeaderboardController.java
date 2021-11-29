@@ -24,7 +24,36 @@ import javafx.stage.Stage;
  * Fall 2021
  */
 public class LeaderboardController {
-	
+	@FXML
+    private Label leaderboardText;
+
+    @FXML
+    private Label title;
+
+    @FXML
+    private Label fourthPlace;
+    
+    @FXML
+    private Label leaderboardPrompt;
+
+    @FXML
+    private Button viewButton;
+    
+    @FXML
+    private Button backButton;
+    
+    @FXML
+    private Label fiveStar;
+
+    @FXML
+    private Label fourStar;
+
+    @FXML
+    private Label threeStar;
+
+    @FXML
+    private Label twoStar;
+    
 	@FXML
 	private Label name1,name2,name3,name4;
 	@FXML
@@ -43,7 +72,33 @@ public class LeaderboardController {
      */
 	@FXML
 	public void initialize() {
-		  symbolSelect.getItems().add("2 Symbols");
+		//set color of background
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String t = colors.get(1);
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + t.substring(2, t.length()) +";";
+		leaderboardText.setStyle(tFill);;
+		title.setStyle(tFill);;
+		fourthPlace.setStyle(tFill);;
+	    leaderboardPrompt.setStyle(tFill);;
+	    viewButton.setStyle(tFill);;
+	    name1.setStyle(tFill);
+	    name2.setStyle(tFill);
+	    name3.setStyle(tFill);
+	    name4.setStyle(tFill);
+	    points1.setStyle(tFill);
+	    points2.setStyle(tFill);
+	    points3.setStyle(tFill);
+	    points4.setStyle(tFill);
+	    fiveStar.setStyle(tFill);
+	    fourStar.setStyle(tFill);
+	    threeStar.setStyle(tFill);
+	    twoStar.setStyle(tFill);
+	    backButton.setStyle(tFill);
+	    
+		symbolSelect.getItems().add("2 Symbols");
     	symbolSelect.getItems().add("3 Symbols");
     	symbolSelect.getItems().add("4 Symbols");
     	symbolSelect.getItems().add("5 Symbols");
