@@ -41,3 +41,7 @@ __*Only up yo 10 symbols per card__
 See how you compare to other peoples' times! Select a number of symbols per card, and view the four fastest times for that symbol count.
 
 ## Running the application
+
+This project was made in Eclipse using Javafx.
+
+Once the directory has been cloned, please import the project into Eclipse to run the application. Ensure that the Java compiler is enabled to allow project specific settings with the Compiler compliance level as 1.8 for the application to compile and run successfully.
