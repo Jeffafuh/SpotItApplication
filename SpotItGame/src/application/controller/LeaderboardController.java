@@ -76,6 +76,8 @@ public class LeaderboardController {
 			board.generateBoard(fileName);
 			ArrayList<String> names=board.getNames();
 			ArrayList<Integer> scores=board.getScores();
+			Collections.reverse(names);
+			Collections.reverse(scores);
 			int i=0;
 			int j=0;
 			name1.setText("Jane Doe");
