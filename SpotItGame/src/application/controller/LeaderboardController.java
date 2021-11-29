@@ -33,8 +33,7 @@ public class LeaderboardController {
 	private Label points1,points2,points3,points4;
 	@FXML
     private ChoiceBox<String> symbolSelect;
-	 @FXML
-	private AnchorPane mainPane;
+
 	private Leaderboard board;
 	
 	/**
