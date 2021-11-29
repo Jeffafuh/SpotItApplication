@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
@@ -27,6 +29,9 @@ import javafx.stage.Stage;
  * Fall 2021
  */
 public class GameStartController {
+	
+	@FXML
+    private Rectangle errorBorder;
 	
 	@FXML
     private Slider modeSelect;
@@ -155,11 +160,13 @@ public class GameStartController {
     	catch(NumberFormatException e)
     	{
     		errorText.setOpacity(1);
+    		errorBorder.setOpacity(1);
     		errorText.setText("Please enter a valid number.");
     	}
     	catch(Exception e)
     	{
     		errorText.setOpacity(1);
+    		errorBorder.setOpacity(1);
     		errorText.setText(e.getMessage());
     	}
     }
