@@ -2,7 +2,7 @@
 
 This is application was created as the final group project for the class CS-3443 (Application Prog.) at UTSA during the Fall 2021 semester.
 
-Group Members:
+Group #7 Members:
 - Jeff Dong
 - Bhavya Gokana
 - Anaya Hartfield
@@ -42,6 +42,6 @@ See how you compare to other peoples' times! Select a number of symbols per card
 
 ## Running the application
 
-This project was made in Eclipse using Javafx.
+This project was made in Eclipse using JavaFX.
 
 Once the directory has been cloned, please import the project into Eclipse to run the application. Ensure that the Java compiler is enabled to allow project specific settings with the Compiler compliance level as 1.8 for the application to compile and run successfully.
