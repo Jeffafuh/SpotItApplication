@@ -66,9 +66,6 @@ public class VersusGameController {
 
     @FXML
     private Label CardCounter1;
-
-    @FXML
-    private AnchorPane aiCounter1;
     
     @FXML
     private AnchorPane mainPane;
@@ -92,7 +89,7 @@ public class VersusGameController {
     	ArrayList<String> colors = dataIO.readColor();
     	String b = colors.get(0);
     	String textColor = colors.get(1);
-    	aiCounter1.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
     	//set color of text
     	String tFill = "-fx-text-fill: #" + textColor.substring(2, textColor.length()) +";";
     	backButton.setStyle(tFill);
