@@ -54,8 +54,6 @@ public class CreateDeckController {
     @FXML
     public void initialize()
     {
-    	
-    	
     	symbolSelect.getItems().add("2 (Default 3 Cards)");
     	symbolSelect.getItems().add("3 (Default 7 Cards)");
     	symbolSelect.getItems().add("4 (Default 13 Cards)");

@@ -24,8 +24,6 @@ import javafx.stage.Stage;
  * Fall 2021
  */
 public class LeaderboardController {
-	@FXML
-    private AnchorPane mainPane;
 	
 	@FXML
 	private Label name1,name2,name3,name4;
@@ -33,8 +31,10 @@ public class LeaderboardController {
 	private Label points1,points2,points3,points4;
 	@FXML
     private ChoiceBox<String> symbolSelect;
-	 @FXML
-	private AnchorPane mainPane;
+	
+	@FXML
+    private AnchorPane mainPane;
+	@FXML
 	private Leaderboard board;
 	
 	/**
