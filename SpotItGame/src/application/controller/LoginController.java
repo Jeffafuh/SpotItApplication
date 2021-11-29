@@ -49,7 +49,6 @@ public class LoginController {
     	ArrayList<String> colors = dataIO.readColor();
     	String t = colors.get(1);
     	String tFill = "-fx-text-fill: #" + t.substring(2, t.length()) +";";
-    	name.setStyle(tFill);
     	title.setStyle(tFill);
     	startButton.setStyle(tFill);
     }
