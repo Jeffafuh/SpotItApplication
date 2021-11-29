@@ -57,5 +57,13 @@
             <Font name="Comic Sans MS Bold" size="15.0" />
          </font>
       </Label>
+      <Button layoutX="1080.0" layoutY="38.0" mnemonicParsing="false" onAction="#switchToLogin" style="-fx-background-color: white;" text="Log Out">
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

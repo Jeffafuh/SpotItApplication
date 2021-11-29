@@ -3,7 +3,7 @@ package application.model;
 /**
  * Class containing functions solely used for the purpose of constructing Finite Projective Planes with an order equal to a power of a prime
  * 
- * @author Jeff
+ * @author Jeff Dong
  * Fall 2021
  */
 public class FPPHelper {

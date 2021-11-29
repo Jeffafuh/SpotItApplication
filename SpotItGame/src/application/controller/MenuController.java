@@ -18,6 +18,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * Main controller for Menu.fxml
+ * Handles the logic for the main menu screen
+ * 
+ * @author Jeff Dong
+ * Fall 2021
+ */
 public class MenuController {
 	//instantiate action objects
 	@FXML
@@ -150,5 +157,20 @@ public class MenuController {
         window.show();
     }
     
-
+    @FXML
+    /**
+     * method that handles switching to the login screen
+     * @param event
+     * @throws IOException
+     */
+    void switchToLogin(ActionEvent event) throws IOException{
+    	URL url = new File("src/application/view/Login.fxml").toURI().toURL();
+    	mainPane = FXMLLoader.load(url);
+        Scene scene = new Scene(mainPane);// pane you are GOING TO show
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
+        scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+    	
+        window.setScene(scene);
+        window.show();
+    }
 }

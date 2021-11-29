@@ -15,6 +15,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * Main controller for Login.fxml
+ * Handles the logic for logging into the application
+ * 
+ * @author Bhavya Gokana
+ * Fall 2021
+ */
 public class LoginController {
 
 
@@ -27,11 +34,15 @@ public class LoginController {
     @FXML
     private AnchorPane mainPane;
     
+    /**
+     * If the user has entered a valid string, store the username and switch to the menu screen
+     * Otherwise, display an error message
+     */
     @FXML
     void login(ActionEvent event) throws IOException {
     	
     	if(name.getText().equals("")) {
-    		invalid.setText("Please enter your name");
+    		invalid.setOpacity(1);
     	}
     	else {
     		dataIO.writeUsername(name.getText());

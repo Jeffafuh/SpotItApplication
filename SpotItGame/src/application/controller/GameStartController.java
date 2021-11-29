@@ -154,10 +154,12 @@ public class GameStartController {
     	}
     	catch(NumberFormatException e)
     	{
+    		errorText.setOpacity(1);
     		errorText.setText("Please enter a valid number.");
     	}
     	catch(Exception e)
     	{
+    		errorText.setOpacity(1);
     		errorText.setText(e.getMessage());
     	}
     }
