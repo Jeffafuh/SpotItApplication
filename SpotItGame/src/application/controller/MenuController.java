@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  * Main controller for Menu.fxml
  * Handles the logic for the main menu screen
  * 
- * @author Jeff Dong
+ * @author Vamshi Ponnala
  * Fall 2021
  */
 public class MenuController {
@@ -35,6 +35,9 @@ public class MenuController {
 
     @FXML
     private Button createButton;
+    
+    @FXML
+    private Button logoutButton;
 
     @FXML
     private Button playButton;
@@ -59,7 +62,7 @@ public class MenuController {
     
     @FXML
     /**
-     * initializes the color selection dropdown menu
+     * sets the background and text color through initialize method
      */
     public void initialize()
     {	
@@ -77,6 +80,7 @@ public class MenuController {
     	leaderboardButton.setStyle(tFill);
     	createButton.setStyle(tFill);
     	confirmButton.setStyle(tFill);
+    	logoutButton.setStyle(tFill);
     }
     
     @FXML
@@ -103,6 +107,7 @@ public class MenuController {
     	leaderboardButton.setStyle(tFill);
     	createButton.setStyle(tFill);
     	confirmButton.setStyle(tFill);
+    	logoutButton.setStyle(tFill);
     }
     
     @FXML

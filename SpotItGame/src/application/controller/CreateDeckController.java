@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -47,6 +48,15 @@ public class CreateDeckController {
     private AnchorPane mainPane;
     
     private double minSize;
+
+    @FXML
+    private Label imagesPerCard;
+
+    @FXML
+    private Label title;
+
+    @FXML
+    private Button backButton;
     
     /**
      * Adds all options to the selection menu, selects the first option by default
@@ -54,6 +64,18 @@ public class CreateDeckController {
     @FXML
     public void initialize()
     {
+    	//set color of background
+    	ArrayList<String> colors = dataIO.readColor();
+    	String b = colors.get(0);
+    	String textColor = colors.get(1);
+    	mainPane.styleProperty().setValue("-fx-background: #"+ b.substring(2, b.length()) +";");
+    	//set color of text
+    	String tFill = "-fx-text-fill: #" + textColor.substring(2, textColor.length()) +";";
+    	generateButton.setStyle(tFill);
+    	imagesPerCard.setStyle(tFill);
+    	title.setStyle(tFill);
+    	backButton.setStyle(tFill);
+    	
     	symbolSelect.getItems().add("2 (Default 3 Cards)");
     	symbolSelect.getItems().add("3 (Default 7 Cards)");
     	symbolSelect.getItems().add("4 (Default 13 Cards)");

@@ -3,6 +3,7 @@ package application.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import application.model.dataIO;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -24,7 +26,12 @@ import javafx.stage.Stage;
  */
 public class LoginController {
 
+	@FXML
+    private Label title;
 
+    @FXML
+    private Button startButton;
+    
     @FXML
     private TextField name;
 
@@ -34,6 +41,18 @@ public class LoginController {
     @FXML
     private AnchorPane mainPane;
     
+    /**
+     * initializes the text colors
+     */
+    public void initialize() {
+    	//set color of text
+    	ArrayList<String> colors = dataIO.readColor();
+    	String t = colors.get(1);
+    	String tFill = "-fx-text-fill: #" + t.substring(2, t.length()) +";";
+    	name.setStyle(tFill);
+    	title.setStyle(tFill);
+    	startButton.setStyle(tFill);
+    }
     /**
      * If the user has entered a valid string, store the username and switch to the menu screen
      * Otherwise, display an error message
