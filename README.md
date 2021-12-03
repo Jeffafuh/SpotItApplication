@@ -9,7 +9,7 @@ Group #7 Members:
 - Joy Kiprotich
 - Vamshi Ponnala
 
-A video presentation of the project can be found [on youtube](https://youtu.be/hU7tObX52EM).
+A video presentation of the project can be found [on Youtube](https://youtu.be/hU7tObX52EM).
 ## Description
 
 As the title suggests, this application implements a functioning version of the card game, *Spot It!* (or more commonly known as [*Dobble*](https://www.dobblegame.com/en/games/) in Europe). In addition to playing the game, this application also supports deck creation and a leaderboard.
